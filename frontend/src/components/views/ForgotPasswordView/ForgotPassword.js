@@ -7,7 +7,6 @@ function ForgotPassword(props) {
 
     const [email, setEmail] = useState('');
 
-    //will write code later
     const handleSubmit = (event) => {
 
     }
