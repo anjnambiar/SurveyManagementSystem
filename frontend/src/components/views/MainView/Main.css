@@ -1,0 +1,27 @@
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.mainLeftPanel {
+    grid-column: 1 / span 6;
+}
+
+.initialImage {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.mainRightPanel {
+    grid-column: 7 / span 12;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(6, 1fr);
+    place-content: center;
+}
+
+.formContainer {
+    grid-column: 2/ span 4;
+}
