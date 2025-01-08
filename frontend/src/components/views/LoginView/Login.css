@@ -4,6 +4,10 @@
     font-size: 20px;
 }
 
+input {
+    padding-left: 10px;
+}
+
 .login_formContainer > * {
     padding: 8px;
 }

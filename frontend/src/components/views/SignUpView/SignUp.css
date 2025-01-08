@@ -4,6 +4,10 @@
     font-size: 20px;
 }
 
+input {
+    padding-left: 10px;
+}
+
 #signUpId {
     font-family: Inter;
     font-size: 30px;
@@ -78,6 +82,13 @@
     text-align: center;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
+}
+
+
+.signUp_errorDiv {
+    padding-left: 10px;
+    font-size: 10px;
+    color: red;
 }
 
 .signup_submitDiv {

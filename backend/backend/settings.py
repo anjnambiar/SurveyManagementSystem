@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = "users.CustomUser"
+AUTH_USER_MODEL = "Login.CustomUser"
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -42,7 +45,15 @@ INSTALLED_APPS = [
     'Login'
 ]
 
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': [
+    # 'rest_framework.authentication.SessionAuthentication',
+    'rest_framework.authentication.BasicAuthentication',
+]
+}
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
