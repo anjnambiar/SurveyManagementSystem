@@ -43,3 +43,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin) :
 
     def __str__(self):
         return self.email
+    
+
+class PasswordResetModel(models.Model) :
+    email = models.EmailField()
+    token = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
