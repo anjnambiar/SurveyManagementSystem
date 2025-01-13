@@ -6,7 +6,7 @@ from rest_framework import status
 from django.contrib.auth import login, logout, authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 #from rest_framework.permissions import IsAuthenticated
-from .models import CustomUser
+from .models import CustomUser, PasswordResetModel
 from django.conf import settings
 from django.core.mail import send_mail
 from django.utils.encoding import force_bytes, force_str
@@ -63,13 +63,13 @@ class UserLoginAuthenticateView(APIView) :
 #view for forgot password
 class ForgotPasswordView(APIView):
 
-    def sendEmail(self, recipient_email, recipient_name) :
+    def sendEmail(self, recipient_email, recipient_name, token) :
         subject = "Forgot Password Email"
         message = f"""\
         Hello {recipient_name},
 
         A request to reset your password was received.
-        Please click the link to reset your password : http://localhost:3000/password-reset
+        Please click the link to reset your password : http://localhost:3000/password-reset/{token}/
         If you are not able to click the link, please copy and paste the url in your browser.
         \n
         Regards
@@ -85,7 +85,10 @@ class ForgotPasswordView(APIView):
         except CustomUser.DoesNotExist :
             user = None
         if(user is not None and user.is_active) :
-                self.sendEmail(user.email, user.name)
+                token = default_token_generator.make_token(user)
+                pass_reset_entry = PasswordResetModel(email = request.data['email'], token = token)
+                pass_reset_entry.save()
+                self.sendEmail(user.email, user.name, token)
                 response_data = {
                     "email" : user.email,
                     "message" : "Password reset send to the registered email address"
@@ -96,22 +99,21 @@ class ForgotPasswordView(APIView):
 
 
 #user resetting the password
-
 class PasswordResetView(APIView) :
-  
-    def post(self, request, uidb64, token) :
+    def post(self, request, token) :
         try:
-            uid = force_str(urlsafe_base64_decode(uidb64)) #get uid from token
-            print("uid....." , uid)
-            user = CustomUser.objects.get(pk=uid) #get user from model
-            print("userrrrr", user)
+            email = PasswordResetModel.objects.get(token = token) #get email from model
+            user = CustomUser.objects.get(email = email) #get user from model
         except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
             user = None
 
-        if user is not None and default_token_generator.check_token(user, token):
+        if user is not None:
             user.set_password(request.data['password'])
             user.save()
+            return Response(status=status.HTTP_200_OK)
         return Response({"error":"Password could not be reset"}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 # view to logout user

@@ -2,7 +2,7 @@ import './PasswordReset.css';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-
+import { useParams } from 'react-router-dom';
 
 function PasswordReset(props) {
 
@@ -11,14 +11,14 @@ function PasswordReset(props) {
     const [passwordError, setPasswordError] = useState('');
     const [resetHeaderMessage, setresetHeaderMessage] = useState('Please reset your password');
     const [showForm, setShowForm] = useState(true); //to hide form after password reset and show login link
+    const {token} = useParams();
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log("TOKEN ...." + token);
         if(validateForm()) {
-            axios.defaults.xsrfCookieName = 'csrftoken';
-            axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-            axios.post('http://127.0.0.1:8000/login/password-reset/<uidb64>/<token>',
-                {password}
+            axios.post(`http://127.0.0.1:8000/login/password-reset/${token}`,
+                {password, token}
             ).then( request => {
                 setresetHeaderMessage('Password has been reset successfully.');
                 setPassword('');

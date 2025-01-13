@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Dashboard from '../DashboardView/Dashboard';
 import {useNavigate} from 'react-router-dom';
+import SurveyMain from '../SurveyMainView/SurveyMain.js';
 
 
 function Login(props) {
@@ -13,9 +14,8 @@ function Login(props) {
    const [authErrorMessage, setAuthErrorMessage] = useState('');
    const navigate = useNavigate();
 
-//    useEffect(()=> {
-//     localStorage.setItem("username",JSON.stringify(email));
-//    },[email]);
+   const username = null;
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,7 +24,8 @@ function Login(props) {
             {email, password})
             .then(response => {
                 console.log(response.data);
-                navigate('/Dashboard');
+                localStorage.setItem("username", response.data.name);
+                navigate('/survey/adminForms');
             }).catch(error => {
                 setAuthErrorMessage('Invalid username or password');
             })
