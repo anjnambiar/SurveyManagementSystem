@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
-    height : 100vh;
+    max-height : 100vh;
     width: 100%;
     font-family : Inter;
 }
@@ -16,34 +16,55 @@
     grid-template-rows: repeat(12, 1fr);
     grid-template-columns: repeat(2, 1fr);
     padding: 0px 40px 0px 20px;
+    max-height : 1200px;
 }
 
 .logoDiv{
     grid-column: 1/ span 2;
-    grid-row: 1/ span 1;
+    grid-row: 1/ span 2;
+}
+
+#logo {
+    font-size: 30px;
+    margin-top: 5px;
+    text-align: left;
+    color : #FFFFFF
 }
 
 .leftLinkDiv {
     grid-column: 1/ span 2;
     display: grid;
     grid-template-columns: 1fr, 1fr;
-    vertical-align: super;
 }
 
 .formLinkDiv{
-    grid-row: 3 / span 4;
+    grid-row: 4 / span 5;
+    margin-top: -9px;
 }
 
 .profileLinkDiv {
-    grid-row: 4 / span 5;
+    grid-row: 5 / span 6;
+    margin-top: 9px;
 }
 
 .userLinkDiv {
-    grid-row: 5 / span 6;
+    grid-row: 6 / span 7;
+    margin-top: 20px;
 }
 
 .logoutDiv {
     grid-row: 11 / span 12;
+}
+
+.logoutButton {
+    grid-column: 2 / span 2;
+    font-size: 18px;
+    font-weight: 600;
+    height: 30px;
+    text-align: left;
+    background-color: #4DA1A9;
+    border: none;
+    color: #F6F4F0;
 }
 
 .survey_icons {
@@ -55,7 +76,6 @@
 
 .surveyMainLink {
     grid-column: 2 / span 2;
-    font-family: Inter;
     font-size: 18px;
     font-weight: 600;
     line-height: 29.05px;
@@ -67,10 +87,36 @@
     padding-left: 5px;
 }
 
-
 .rightPanel {
     grid-column: 2 / span 12;
     grid-row: 1 / span 12;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
+}
+
+.surveyHeaderSection {
+    background-color: #E9F3F4;
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    height: 50px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29.05px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.headerLeft {
+    float: left;
+    padding-left: 30px;
+    padding-top: 10px;
+    color: #423A8E;
+}
+
+.headerRight {
+    float: right;
+    padding-right: 30px;
+    padding-top: 10px;
+    color: #263238;
 }

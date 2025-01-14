@@ -4,7 +4,7 @@ import ForgotPassword from '../ForgotPasswordView/ForgotPassword.js';
 import PasswordReset from '../PasswordResetView/PasswordReset.js';
 import SignUp from '../SignUpView/SignUp.js';
 import Login from '../LoginView/Login.js';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 
 
 function Main() {
@@ -19,9 +19,8 @@ function Main() {
 
                 <div className="mainRightPanel">
                     <div className="formContainer">
-
                     <Routes>
-                        <Route className="segment" path="/" element={<Login/>}></Route>
+                        <Route path="/" element={<Login/>}></Route>
                     </Routes>
                     <Routes>
                         <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
@@ -32,12 +31,11 @@ function Main() {
                     <Routes>
                         <Route path="/password-reset/:token" element={<PasswordReset/>}></Route>
                     </Routes>
-
                     </div>
                 </div>
 
             </div>
-            
+
         </div>
     );
 }

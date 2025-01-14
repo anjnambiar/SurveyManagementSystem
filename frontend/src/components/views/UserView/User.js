@@ -2,7 +2,9 @@
 function User() {
 
     return(
-        <div></div>
+        <div>
+            <h1>This is User View</h1>
+        </div>
     );
 }
 
