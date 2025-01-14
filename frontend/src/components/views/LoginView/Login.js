@@ -1,10 +1,8 @@
 import './Login.css';
-import { useState , useEffect} from 'react';
+import { useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import Dashboard from '../DashboardView/Dashboard';
 import {useNavigate} from 'react-router-dom';
-import SurveyMain from '../SurveyMainView/SurveyMain.js';
 
 
 function Login(props) {
@@ -14,8 +12,6 @@ function Login(props) {
    const [authErrorMessage, setAuthErrorMessage] = useState('');
    const navigate = useNavigate();
 
-   const username = null;
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,9 +19,8 @@ function Login(props) {
             axios.post('http://127.0.0.1:8000/login/authenticate/' , //api call for user authentication
             {email, password})
             .then(response => {
-                console.log(response.data);
                 localStorage.setItem("username", response.data.name);
-                navigate('/survey/adminForms');
+                return navigate('/survey/adminForms', {replace:true});
             }).catch(error => {
                 setAuthErrorMessage('Invalid username or password');
             })
