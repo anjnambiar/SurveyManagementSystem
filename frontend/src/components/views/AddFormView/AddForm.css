@@ -1,0 +1,227 @@
+.addFormMain {
+    grid-row: 2 / span 12;
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+}
+
+.addForm {
+    margin : 30px;
+    border-radius: 10px;
+    box-shadow: 5px 10px 20px #ccc;
+    font-family: Inter;
+    color: #423A8E;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    grid-column: 1 / span 1;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.addFormDiv {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 12;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px;
+    padding: 10px;
+    grid-auto-rows: auto;
+}
+
+.backLinkDiv {
+    float: left;
+    grid-column: 1 / span 1;
+}
+
+.backLink {
+    text-decoration: none;
+}
+
+.addForm_Title_Points_div {
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 80px;
+    grid-auto-rows: auto;
+    margin: 0px 0px 0px 10px;
+}
+
+.addForm_titleDiv {
+    grid-column: 1 / span 2;
+    width: 90%;
+}
+
+#title_label {
+    margin-left: 10px;
+}
+#title_input {
+    width: 90%;
+    margin-left: 10px;
+}
+
+.addForm_pointsDiv {
+    grid-column: 3 / span 4;
+    width: 90%;
+}
+
+#points_label {
+    margin-left: 10px;
+}
+#points_input {
+    width: 90%;
+    margin-left: 10px;
+}
+
+.addForm_descriptionDiv {
+    margin: 0px 0px 0px 10px;
+    grid-column: 1 / span 2;
+    width: 90.3%;
+    padding : 0px 0px 0px 10px;
+}
+
+#descr_input {
+    resize: none;
+    width: 100%;
+}
+
+.addForm_quest_ans_div {
+    margin: 30px 0px 0px 10px;
+    padding : 0px 0px 0px 10px;
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 80px;
+    grid-auto-rows: auto;
+}
+
+.addForm_questionDiv {
+    grid-column: 1 / span 2;
+    width: 90%;
+    height: 50%;
+}
+
+#question_input {
+    width: 95%;
+}
+
+.custom-select-div {
+    grid-column: 3 / span 4;
+    width : 90%;
+    height: 30px;
+    padding-top: 20px;
+}
+.custom-select {
+    width: 95%;
+    height: 30px;
+    border: 1px solid #BFBFBF;
+    color: #423A8E;
+}
+
+.AnswerTypeChoiceDiv {
+    margin: 40px 0px 20px 20px;
+    grid-column: 1/ span 2;
+    width: 50%;
+    display: grid;
+    grid-auto-rows: auto;
+    padding-bottom: 20px;
+}
+
+.radiobtnAnswerType{
+    margin-bottom: 10px;
+}
+
+.radiobtnAnsType_input {
+    width: 70%;
+    height: 30px;
+}
+.radiobtnAnsType_button {
+    color: #FFFFFF;
+    background-color: #4DA1A9;
+    margin-left: 10px;
+    width: 10%;
+    height: 30px;
+    margin-bottom: 15px;
+    float: right;
+}
+
+.addForm_alterQuestionDiv {
+    margin: 20px 0px 0px 20px;
+    grid-column: 2 / span 2;
+    width: 85%;
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr 1fr;
+}
+
+#addQuestionButton {
+    color: #FFFFFF;
+    background-color: #4DA1A9;
+    font-weight: 600;
+    width: 90%;
+    height: 40px;
+    margin-right: 10px;
+    grid-column: 1 / span 1;
+}
+#removeQuestionButton {
+    border: 1px solid #4DA1A9;
+    color: #4DA1A9;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    width: 90%;
+    height: 40px;
+    justify-content: space-between;
+    margin-left: 20px;
+    grid-column: 2 / span 2;
+}
+
+.addForm_saveCancelbuttonsDiv {
+    margin-top: 20px;
+    grid-column: 1 / span 2;
+    margin: auto;
+    margin-top: 60px;
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr 1fr;
+}
+
+#addForm_savebtn {
+    color: #FFFFFF;
+    background-color: #4DA1A9;
+    font-weight: 600;
+    height: 40px;
+    padding: 10px 20px 10px 20px;
+    margin-right: 10px;
+}
+#addform_cancelbtn {
+    border: 1px solid #4DA1A9;
+    color: #4DA1A9;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    height: 40px;
+    padding: 10px 20px 10px 20px;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+input {
+    border: 1px solid #BFBFBF;
+    border-radius: 3px;
+    height: 25px;
+}
+
+textarea {
+    border: 1px solid #BFBFBF;
+    border-radius: 3px;
+    height: 80px;
+    resize: none;
+    width: 100%;
+}
+
+button {
+    border-radius: 10px;
+    opacity: 0px;
+    border: none;
+}

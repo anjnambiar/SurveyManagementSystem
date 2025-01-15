@@ -1,5 +1,5 @@
 import './AdminForms.css';
-import { replace, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
 
@@ -10,6 +10,14 @@ function AdminForms () {
     const handleAddFormClick = () => {
         console.log("handleAddFormClick");
         navigate('/survey/addForms');
+    }
+
+    const handleFormActionDropdownClick = () => {
+        let selectValue = document.getElementById('formAction_select').value;
+        if(selectValue == 'edit') navigate('');
+        if(selectValue == 'delete') navigate('');
+        if(selectValue == 'view_form') navigate('/survey/viewForm');
+        if(selectValue == 'view_parti') navigate('');
     }
 
     return (
@@ -26,16 +34,14 @@ function AdminForms () {
                 <div className='searchDiv'>
                     <div className='searchSubDiv'>
                         <label className='entityLabel'>Entities :</label>
-                        <div className="dropdown">
-                            <button className="dropbtn">
-                                100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x2304;
-                            </button>
-                            <div className="dropdown-content">
-                                <a href="#">100</a>
-                                <a href="#">50</a>
-                                <a href="#">25</a>
-                            </div>
+                        <div className="custom-select-div">
+                            <select className="custom-select">
+                                <option value="100">100</option>
+                                <option value="50">50</option>
+                                <option value="25">25</option>
+                            </select>
                         </div>
+
                     </div>
                     <div className='searchInputDiv'>
                         <input className='searchInput' type="text" placeholder="Search &#x1F50D;"/>
@@ -46,10 +52,11 @@ function AdminForms () {
                     <table className='formTable'>
                         <thead>
                         <tr>
-                            <th>Form Name &#8645;</th>
-                            <th id='description'>Description &#8645;</th>
-                            <th>Form Points &#8645;</th>
-                            <th>Form Status &#8645;</th>
+                            <th id='formName'>Form Name &#8645;</th>
+                            <th id='formDescription'>Description &#8645;</th>
+                            <th id='formPoints'>Points &#8645;</th>
+                            <th id='formStatus'>Status &#8645;</th>
+                            <th id='formActionId'></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -58,38 +65,16 @@ function AdminForms () {
                             <td>form 1 description</td>
                             <td>10 pt</td>
                             <td>Active</td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr>
-                            <td>form 2</td>
-                            <td>form 2 description</td>
-                            <td>20 pt</td>
-                            <td>Deleted</td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr>
-                            <td>form 3</td>
-                            <td>form 3 description</td>
-                            <td>20 pt</td>
-                            <td>Deleted</td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr>
-                            <td>form 4</td>
-                            <td>form 4 description</td>
-                            <td>10 pt</td>
-                            <td>Active</td>
-                        </tr>
-                        </tbody>
-                        <tbody>
-                        <tr>
-                            <td>form 5</td>
-                            <td>form 5 description</td>
-                            <td>20 pt</td>
-                            <td>Deleted</td>
+                            <td>
+                                <select id='formAction_select'
+                                    className="formAction-dropdown"
+                                    onChange={handleFormActionDropdownClick}>
+                                    <option value='edit'>Edit</option>
+                                    <option value='delete'>Delete</option>
+                                    <option value='view_form'>View Form</option>
+                                    <option valuw='view_parti'>View Participant List</option>
+                                </select>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
