@@ -7,6 +7,7 @@
     grid-column: 1 / span 1;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
+    grid-auto-rows: auto;
     grid-template-columns: 1fr;
     padding-left : 20px;
     max-height : 600px;
@@ -79,7 +80,7 @@
 }
 
 .formTable {
-    margin: 10px;
+    margin: 20px;
 }
 
 table, tr, th, td {
@@ -89,7 +90,6 @@ table, tr, th, td {
 
 
 th {
-    width: 20%;
     background-color: #F5F5F5;
     font-size: 20px;
     font-weight: 500;
@@ -100,8 +100,20 @@ th {
     padding : 10px 105px 10px 10px;
 }
 
-#description {
-    width : 40%;
+#formName {
+    width: 30%;
+}
+#formDescription {
+    width : 35%;
+}
+#formPoints {
+    width: 30%;
+}
+#formStatus {
+    width: 30%;
+}
+#formActionId {
+    width : 5%;
 }
 
 tr {
@@ -116,7 +128,7 @@ tr {
     text-decoration-skip-ink: none;
 }
 
-tr:nth-child(odd) {
+tbody:nth-child(odd) {
     background-color: #EEF6F7;
 }
 
@@ -160,36 +172,21 @@ td {
     text-align: left;
     border-radius: 5px;
   }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    text-align: left;
-    display: none;
-    position: absolute;
-    background-color: #FFFFFF;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    color: #2C2C2C;
-    font-size: 16px;
-    width : 150px;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: #2C2C2C;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {display: block;}
-  
+
+.custom-select-div {
+    grid-column: 3 / span 4;
+    width : 90%;
+    height: 30px;
+    padding-top: 20px;
+}
+.custom-select {
+    width: 95%;
+    height: 30px;
+    border: 1px solid #BFBFBF;
+    color: #423A8E;
+}
+
+.formAction-dropdown {
+    width: 20px;
+    border-radius: 100%;
+}
