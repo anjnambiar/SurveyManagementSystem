@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './AddForm.css';
 
 
-const OptionsComponent = () => {
+const OptionsComponent = ({id, setQuestDivs, questDivs}) => {
 
-  const [optionInputs, setOptionInputs] = useState([{id : Date.now() , value : ""}]);
+  const [optionInputs, setOptionInputs] = useState([{id : 1 , value : ""}]);
 
   const handleAddOptionComponent = () => {
-    const newInputOption = {id : Date.now() , value : ""};
+    const newInputOption = {id : optionInputs[optionInputs.length-1].id + 1, value : ""};
     setOptionInputs([...optionInputs, newInputOption]);
   };
 
@@ -24,6 +24,15 @@ const OptionsComponent = () => {
     setOptionInputs(updatedInputs);
   };
 
+  useEffect(()=>{
+  //   const updatedDropdwn = questDivs.map((questDiv)=>
+  //     questDiv.id === id ? {...questDiv, dropdwnValue : newValue} : questDiv
+  // );
+  // setQuestDivs(updatedDropdwn);
+   const filteredQuest =  questDivs.filter((questDiv)=>questDiv.id === id);
+   filteredQuest[0].options = optionInputs;
+   setQuestDivs((prev) => prev.map((obj)=> obj.id === filteredQuest[0].id ? filteredQuest[0] : obj))
+  },[optionInputs]);
 
   return (
       <>
