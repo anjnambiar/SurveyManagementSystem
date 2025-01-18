@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import OptionsComponent from './OptionsComponent.js';
 import './AddForm.css';
 import { useState } from 'react';
 
 const QuestionComponent = () => {
 
-    const [isRadiobtn, setIsRadiobtn] = useState(false);
-    const [questDivs, setQuestDivs] = useState([{id:Date.now(), inputValue:"", dropdwnValue:"0"}]);
+    const [questDivs, setQuestDivs] = useState([{id:1, inputValue:"", dropdwnValue:"0", options:[]}]);
 
     const handleAddQuestionClick = () => {
-        const newQuest = {id : Date.now(), inputValue:"", dropdwnValue:"0"};
+        const newQuest = {id : questDivs[questDivs.length-1].id+1, inputValue:"", dropdwnValue:"0",  options:[]};
         setQuestDivs([...questDivs, newQuest]);
+
     }
 
     const handleRemoveQuestionClick = (id) => {
@@ -27,18 +27,15 @@ const QuestionComponent = () => {
     }
 
     const handleDropdownClick = (id, newValue) => {
-        let selectValue = document.getElementById('ans-dropdownId').value;
-        if(selectValue === '1') {
-         setIsRadiobtn(true);
-        } else {
-         setIsRadiobtn(false);
-        }
         const updatedDropdwn = questDivs.map((questDiv)=>
             questDiv.id === id ? {...questDiv, dropdwnValue : newValue} : questDiv
         );
         setQuestDivs(updatedDropdwn);
-     }
+    }
 
+    useEffect(()=>{
+        console.log("questdiv -- question comp --", questDivs);
+    },[questDivs]);
 
   return (
     <>
@@ -67,13 +64,15 @@ const QuestionComponent = () => {
                     </div>
 
                     <div className='optionsComponentDiv'>
-                        { isRadiobtn ? <OptionsComponent/> : null }
+                        { questDiv.dropdwnValue === "1" ? <OptionsComponent id={questDiv.id} setQuestDivs={setQuestDivs} questDivs={questDivs}/> : null }
                     </div>
 
                     <div className='addForm_alterQuestionDiv'>
+                        { questDivs[questDivs.length-1].id === questDiv.id ?
                         <button type='button' id='addQuestionButton'
                                 onClick={handleAddQuestionClick}
-                                >Add Question</button>
+                                >Add Question</button> : ""
+                        }
                         <button type='button' id='removeQuestionButton'
                                 onClick={()=>handleRemoveQuestionClick(questDiv.id)}
                                 >Remove Question</button>
