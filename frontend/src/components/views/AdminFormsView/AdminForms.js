@@ -1,23 +1,31 @@
 import './AdminForms.css';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import { useState, useEffect } from 'react';
 
 
 function AdminForms () {
 
     const navigate = useNavigate();
+    const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    // Fetch form table data from an API
+    fetch('')
+      .then(response => response.json())
+      .then(tableData => setTableData(tableData));
+    }, []);
+
 
     const handleAddFormClick = () => {
-        console.log("handleAddFormClick");
         navigate('/survey/addForms');
     }
 
     const handleFormActionDropdownClick = () => {
         let selectValue = document.getElementById('formAction_select').value;
-        if(selectValue == 'edit') navigate('');
-        if(selectValue == 'delete') navigate('');
-        if(selectValue == 'view_form') navigate('/survey/viewForm');
-        if(selectValue == 'view_parti') navigate('');
+        if(selectValue === 'delete') navigate('');
+        if(selectValue === 'view_form') navigate('/survey/viewForm');
+        if(selectValue === 'view_parti') navigate('');
     }
 
     return (
@@ -26,7 +34,7 @@ function AdminForms () {
             <div className="rightContentsDiv">
 
                 <div className="addFormButtonDiv">
-                    <button className='addFormButton'
+                    <button type='button' className='addFormButton'
                     onClick = {handleAddFormClick}
                     >+ Add Form</button>
                 </div>
@@ -60,22 +68,29 @@ function AdminForms () {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                            {tableData.map(tableEntry => (
+                                <tr key={tableEntry.id}> {/* code to be changed */}
+                                    <td>{tableEntry.id}</td>
+                                    <td>{tableEntry.name}</td>
+                                    <td>{tableEntry.email}</td>
+                                    <td>
+                                        <select id='formAction_select'
+                                            className="formAction-dropdown"
+                                            onChange={handleFormActionDropdownClick}>
+                                            <option value='delete'>Delete</option>
+                                            <option value='view_form'>View Form</option>
+                                            <option valuw='view_parti'>View Participant List</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            ))}
+                        {/* <tr>
                             <td>form 1</td>
                             <td>form 1 description</td>
                             <td>10 pt</td>
                             <td>Active</td>
-                            <td>
-                                <select id='formAction_select'
-                                    className="formAction-dropdown"
-                                    onChange={handleFormActionDropdownClick}>
-                                    <option value='edit'>Edit</option>
-                                    <option value='delete'>Delete</option>
-                                    <option value='view_form'>View Form</option>
-                                    <option valuw='view_parti'>View Participant List</option>
-                                </select>
-                            </td>
-                        </tr>
+                            
+                        </tr> */}
                         </tbody>
                     </table>
                 </div>

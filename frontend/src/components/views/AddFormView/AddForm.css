@@ -29,6 +29,7 @@
     grid-template-rows: 50px;
     padding: 10px;
     grid-auto-rows: auto;
+    overflow: hidden;
 }
 
 .backLinkDiv {
@@ -87,17 +88,23 @@
     width: 100%;
 }
 
-.addForm_quest_ans_div {
-    margin: 30px 0px 0px 10px;
-    padding : 0px 0px 0px 10px;
+.questionComponenet_div {
+    margin: 10px 5px 0px 10px;
+    padding: 0px 0px 0px 10px;
     grid-column: 1 / span 2;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 80px;
+    grid-template-columns: 1fr;
     grid-auto-rows: auto;
 }
 
-.addForm_questionDiv {
+.questionComponent_div {
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+}
+
+.question-div {
     grid-column: 1 / span 2;
     width: 90%;
     height: 50%;
@@ -120,61 +127,72 @@
     color: #423A8E;
 }
 
-.AnswerTypeChoiceDiv {
-    margin: 40px 0px 20px 20px;
-    grid-column: 1/ span 2;
-    width: 50%;
+.optionsComponentDiv {
+    grid-column: 2 / span 2;
+    margin: 40px 0px 20px 0px;
+    width: 100%;
     display: grid;
+    grid-template-rows: 50px;
     grid-auto-rows: auto;
-    padding-bottom: 20px;
+    grid-template-columns: 1fr 1fr;
 }
 
-.radiobtnAnswerType{
-    margin-bottom: 10px;
+.optionsComponent{
+    grid-column: 1 / span 1;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 50px;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
-.radiobtnAnsType_input {
-    width: 70%;
-    height: 30px;
-}
-.radiobtnAnsType_button {
+.optionsAddComponent_button {
+    grid-column: 2 / span 2;
     color: #FFFFFF;
     background-color: #4DA1A9;
-    margin-left: 10px;
+    margin-left: 30px;
     width: 10%;
     height: 30px;
-    margin-bottom: 15px;
-    float: right;
+    float: left;
+}
+
+.optionsComponent_input {
+    width: 100%;
+    grid-column: 1 / span 2;
+}
+.optionsRemoveComponent_button {
+    color: #FFFFFF;
+    background-color: #4DA1A9;
+    margin-left: 30px;
+    width: 30%;
+    height: 30px;
+    grid-column: 3 / span 2;
 }
 
 .addForm_alterQuestionDiv {
-    margin: 20px 0px 0px 20px;
     grid-column: 2 / span 2;
-    width: 85%;
+    width: 40%;
     display: grid;
     grid-auto-rows: auto;
     grid-template-columns: 1fr 1fr;
+    float: right;
 }
 
 #addQuestionButton {
     color: #FFFFFF;
     background-color: #4DA1A9;
     font-weight: 600;
-    width: 90%;
+    width: 60%;
     height: 40px;
-    margin-right: 10px;
-    grid-column: 1 / span 1;
 }
 #removeQuestionButton {
     border: 1px solid #4DA1A9;
     color: #4DA1A9;
     background-color: #FFFFFF;
     font-weight: 600;
-    width: 90%;
+    width: 60%;
     height: 40px;
     justify-content: space-between;
-    margin-left: 20px;
-    grid-column: 2 / span 2;
 }
 
 .addForm_saveCancelbuttonsDiv {

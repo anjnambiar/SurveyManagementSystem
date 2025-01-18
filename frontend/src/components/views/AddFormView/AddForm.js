@@ -1,28 +1,11 @@
 import './AddForm.css';
-import { Link, useNavigate } from 'react-router-dom';
-import ShortAnswerType from './ShortAnswerType.js';
-import { useState } from 'react';
-import RadiobtnAnswerType from './RadiobtnAnswerType.js';
+import { Link , useNavigate} from 'react-router-dom';
+import QuestionComponent from './QuestionComponent.js';
 
 function AddForm() {
 
-    const [isRadiobtn, setIsRadiobtn] = useState(false);
-    const [isShortAns, setIsShortAns] = useState(false);
     const navigate = useNavigate();
-
-    const handleDropdownClick = (event) => {
-       let selectValue = document.getElementById('ans-dropdownId').value;
-       if(selectValue === '1') {
-        setIsRadiobtn(true);
-        setIsShortAns(false);
-       } else if(selectValue === '2') {
-        setIsRadiobtn(false);
-        setIsShortAns(true);
-       } else {
-        setIsRadiobtn(false);
-        setIsShortAns(false);
-       }
-    }
+ 
 
     return(
 
@@ -31,7 +14,7 @@ function AddForm() {
                 <div className='addFormDiv'>
 
                     <div className='backLinkDiv'>
-                        <Link className='backLink' onClick={() => navigate(-1)} >
+                        <Link className='backLink' to={'/survey/adminForms'} >
                         &#9001;  Back</Link>
                     </div>
 
@@ -53,37 +36,13 @@ function AddForm() {
                         <textarea id='descr_input' type = 'text' />
                     </div>
 
-                    <div className='addForm_quest_ans_div'>
-
-                        <div className='addForm_questionDiv'>
-                            <label id='question_label'>Question</label>
-                            <input id='question_input' type = 'text'/>
-                        </div>
-
-                        <div className="custom-select-div">
-                            <select id='ans-dropdownId' className="custom-select"
-                            onChange={handleDropdownClick}>
-                                <option value="0">Select ans type</option>
-                                <option value="1">Radio button</option>
-                                <option value="2">Short Answer</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <div className='AnswerTypeChoiceDiv'>
-                       {isRadiobtn ? <RadiobtnAnswerType/> : null}
-                        {isShortAns ? <ShortAnswerType/> : null}
-                    </div>
-
-                    <div className='addForm_alterQuestionDiv'>
-                        <button id='addQuestionButton'>Add Question</button>
-                        <button id='removeQuestionButton'>Remove Question</button>
+                    <div className='questionComponenet_div'>
+                        <QuestionComponent/>
                     </div>
 
                     <div className='addForm_saveCancelbuttonsDiv'>
-                        <button id='addForm_savebtn'>Save</button>
-                        <button id='addform_cancelbtn'>Cancel</button>
+                        <button type='submit' id='addForm_savebtn'>Save</button>
+                        <button type='button' id='addform_cancelbtn' onClick={()=>navigate('/survey/adminForms')}>Cancel</button>
                     </div>
 
                 </div>
