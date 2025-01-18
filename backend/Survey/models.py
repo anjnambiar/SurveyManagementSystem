@@ -22,21 +22,21 @@ class Question(models.Model) :
         ('QA', 'Question and Answer')
     ]
 
-    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
+    survey = models.ForeignKey(Survey, related_name="questions", on_delete=models.CASCADE)
     question_title = models.CharField(max_length=255)
     question_type = models.CharField(max_length=5, choices=QUESTION_TYPES)
 
     def __str__(self):
         return self.question_title
-    
+
 
 class Option(models.Model) :
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name="options", on_delete=models.CASCADE)
     option_name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.option_name
-    
+
 
 class Response(models.Model) :
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
