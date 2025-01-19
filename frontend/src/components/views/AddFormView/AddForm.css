@@ -88,7 +88,7 @@
     width: 100%;
 }
 
-.questionComponenet_div {
+.questionComponenet_div{
     margin: 10px 5px 0px 10px;
     padding: 0px 0px 0px 10px;
     grid-column: 1 / span 2;
@@ -101,6 +101,7 @@
     grid-column: 1 / span 2;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 20px;
     grid-auto-rows: auto;
 }
 
@@ -171,6 +172,7 @@
 
 .addForm_alterQuestionDiv {
     grid-column: 2 / span 2;
+    margin-bottom: 20px;
     width: 40%;
     display: grid;
     grid-auto-rows: auto;
@@ -192,7 +194,6 @@
     font-weight: 600;
     width: 60%;
     height: 40px;
-    justify-content: space-between;
 }
 
 .addForm_saveCancelbuttonsDiv {
