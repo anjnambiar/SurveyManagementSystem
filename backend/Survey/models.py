@@ -19,7 +19,7 @@ class Question(models.Model) :
 
     QUESTION_TYPES = [
         ('MCQ', 'Multpile choice'),
-        ('QA', 'Question and Answer')
+        ('SA', 'Short Answer')
     ]
 
     survey = models.ForeignKey(Survey, related_name="questions", on_delete=models.CASCADE)
@@ -32,10 +32,10 @@ class Question(models.Model) :
 
 class Option(models.Model) :
     question = models.ForeignKey(Question, related_name="options", on_delete=models.CASCADE)
-    option_name = models.CharField(max_length=255)
+    option_name = models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return self.option_name
+        return self.option_name or "Option not defined"
 
 
 class Response(models.Model) :
