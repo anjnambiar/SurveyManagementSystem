@@ -37,8 +37,7 @@
     grid-column: 1 / span 1;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    padding-right : 250px;
-    margin-top: -10px;
+    margin: 0px 0px 10px 10px;
 }
 
 .searchSubDiv {
@@ -65,7 +64,9 @@
 }
 
 .searchInput {
-    padding: 10px 250px 10px 20px;
+    padding: 10px 20px 10px 20px;
+    width: 100%;
+    float: right;
     border: none;
     font-size: 17px;
     background-color: #F5F5F5;
@@ -80,7 +81,7 @@
 }
 
 .formTable {
-    margin: 20px;
+    margin: 10px;
     width: 100%;
 }
 
@@ -98,23 +99,23 @@ th {
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    padding : 10px 100px 10px 10px;
+    padding : 10px 0px 10px 10px;
 }
 
 #formName {
-    width: 25%;
+    width: 30%;
 }
 #formDescription {
-    width : 35%;
+    width : 50%;
 }
 #formPoints {
     width: 20%;
 }
 #formStatus {
-    width: 30%;
+    width: 20%;
 }
-#formActionId {
-    width : 5%;
+#formActionId  {
+    width : 2%;
 }
 
 tr {
@@ -129,12 +130,13 @@ tr {
     text-decoration-skip-ink: none;
 }
 
-tbody:nth-child(odd) {
-    background-color: #EEF6F7;
+tr:nth-child(even) {
+    --parent-bg-color: #EEF6F7;
+    background-color: var(--parent-bg-color);
 }
 
 td {
-    padding : 10px 130px 10px 10px;
+    padding : 10px 50px 10px 10px;
 }
 
 .formTableEntryCountDiv {
@@ -188,6 +190,10 @@ td {
 }
 
 .formAction-dropdown {
-    width: 20px;
-    border-radius: 100%;
+    appearance: none;
+    border: none;
+    width: 22px;
+    height: 22px;
+    background-image: url("../../../images/FormTableDropdwn.png");
+    background-color: var(--parent-bg-color);
 }

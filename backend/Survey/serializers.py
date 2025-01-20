@@ -37,6 +37,5 @@ class SurveySerializer(serializers.ModelSerializer) :
 
             for option_data in options_data :
                 option = Option.objects.create(question=question, **option_data)
-
         return survey
 
