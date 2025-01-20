@@ -7,11 +7,10 @@ from rest_framework import status
 # Create your views here.
 
 class AddSurveyView(APIView) :
-
-    # def get(self, request) :
-    #     survey = Survey.objects.all()
-    #     serializer = SurveySerializer(survey, many=True)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request) :
+        survey = Survey.objects.all()
+        serializer = SurveySerializer(survey, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs) :
         serializer = SurveySerializer(data = request.data)

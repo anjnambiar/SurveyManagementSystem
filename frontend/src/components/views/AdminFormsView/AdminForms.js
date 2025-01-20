@@ -2,6 +2,7 @@ import './AdminForms.css';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 function AdminForms () {
@@ -11,8 +12,8 @@ function AdminForms () {
 
   useEffect(() => {
     // Fetch form table data from an API
-    fetch('')
-      .then(response => response.json())
+    axios.get('http://127.0.0.1:8000/survey/addSurvey/')
+      .then(response => response.data)
       .then(tableData => setTableData(tableData));
     }, []);
 
@@ -25,7 +26,7 @@ function AdminForms () {
         let selectValue = document.getElementById('formAction_select').value;
         if(selectValue === 'delete') navigate('');
         if(selectValue === 'view_form') navigate('/survey/viewForm');
-        if(selectValue === 'view_parti') navigate('');
+        if(selectValue === 'view_participants') navigate('');
     }
 
     return (
@@ -69,35 +70,32 @@ function AdminForms () {
                         </thead>
                         <tbody>
                             {tableData.map(tableEntry => (
-                                <tr key={tableEntry.id}> {/* code to be changed */}
-                                    <td>{tableEntry.id}</td>
-                                    <td>{tableEntry.name}</td>
-                                    <td>{tableEntry.email}</td>
+                                <tr key={tableEntry.id}>
+                                    <td>{tableEntry.title}</td>
+                                    <td>{tableEntry.description}</td>
+                                    <td>{tableEntry.reward_points}</td>
+                                    <td>{tableEntry.status == true ? "Active" : "Deleted"}</td>
                                     <td>
+                                    { tableEntry.status == true ?
                                         <select id='formAction_select'
                                             className="formAction-dropdown"
                                             onChange={handleFormActionDropdownClick}>
+                                                <option value='delete'></option>
                                             <option value='delete'>Delete</option>
                                             <option value='view_form'>View Form</option>
-                                            <option valuw='view_parti'>View Participant List</option>
+                                            <option valuw='view_participants'>View Participant List</option>
                                         </select>
+                                        : null }
                                     </td>
                                 </tr>
                             ))}
-                        {/* <tr>
-                            <td>form 1</td>
-                            <td>form 1 description</td>
-                            <td>10 pt</td>
-                            <td>Active</td>
-                            
-                        </tr> */}
                         </tbody>
                     </table>
                 </div>
 
                 <div className='formTableEntryCountDiv'>
-                    <label className='showingLabel'>Showing 1 to 5 of 5 entries</label>
-                    <label className='paginationLabel'>Pagination component comes here</label>
+                    <label className='showingLabel'>Showing 1 to {tableData.length} of {tableData.length} entries</label>
+                    <label className='paginationLabel'>*Pagination component comes here</label>
                 </div>
 
             </div>
