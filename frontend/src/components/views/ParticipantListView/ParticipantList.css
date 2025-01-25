@@ -1,8 +1,9 @@
-.adminFormsDiv {
+
+.participantList {
     font-family: Inter;
 }
 
-.rightContentsDiv {
+.pl_rightContentsDiv {
     grid-row: 2 / span 12;
     grid-column: 1 / span 1;
     display: grid;
@@ -12,27 +13,19 @@
     max-height : 600px;
 }
 
-.addFormButtonDiv {
+.pl_backLinkDiv {
     grid-column: 1 / span 1;
     grid-row: 2 / span 2;
-    padding-top: 5px;
+    padding: 5px 0px 0px 15px;
     margin-right: 20px;
 }
 
-.addFormButton {
-    float: right;
-    background-color: #4DA1A9;
-    padding: 5px 15px 5px 15px;
-    border-radius: 10px;
-    border: none;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24.2px;
-    text-align: center;
-    color: #F6F4F0;
+.pl_backLink{
+    float: left;
+    text-decoration: none;
 }
 
-.searchDiv {
+.pl_searchDiv {
     grid-row: 3 / span 3;
     grid-column: 1 / span 1;
     display: grid;
@@ -40,11 +33,11 @@
     margin: 0px 0px 10px 10px;
 }
 
-.searchSubDiv {
+.pl_searchSubDiv {
     grid-column: 1 / span 2;
 }
 
-.entityLabel {
+.pl_entityLabel {
     float: left;
     color : #959595;
     font-family: Poppins;
@@ -57,13 +50,13 @@
     margin-left: 12px;
 }
 
-.searchInputDiv {
+.pl_searchInputDiv {
     grid-column: 10 / span 12;
     padding: 20px;
     margin: 10px 0px 20px 30px;
 }
 
-.searchInput {
+.pl_searchInput {
     padding: 10px 20px 10px 20px;
     width: 100%;
     float: right;
@@ -74,13 +67,13 @@
     color: #959595;
 }
 
-.tableDiv {
+.pl_tableDiv {
     grid-column: 1 / span 1;
     grid-row: 5/ span 10;
     width: 97%;
 }
 
-.formTable {
+.pl_participantsTable {
     margin: 10px;
     width: 100%;
 }
@@ -89,7 +82,6 @@ table, tr, th, td {
     border-collapse: collapse;
     color: #232323;
 }
-
 
 th {
     background-color: #F5F5F5;
@@ -102,20 +94,31 @@ th {
     padding : 10px 0px 10px 10px;
 }
 
-#formName {
-    width: 30%;
+#pl_participantName {
+    width : 20%;
 }
-#formDescription {
-    width : 50%;
+#pl_participantContact {
+    width : 20%;
 }
-#formPoints {
-    width: 20%;
+#pl_participantEmail {
+    width : 20%;
 }
-#formStatus {
-    width: 20%;
-}
-#formActionId  {
+#pl_viewFormBtnId {
     width : 2%;
+}
+
+.pl_viewFormbtn{
+    width: 130px;
+    height: 35px;
+    background-color: #4DA1A9;
+    padding: 5px 15px 5px 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24.2px;
+    text-align: center;
+    color: #F6F4F0;
 }
 
 tr {
@@ -139,7 +142,7 @@ td {
     padding : 10px 50px 10px 10px;
 }
 
-.formTableEntryCountDiv {
+.pl_participantTableEntryCountDiv {
     grid-column: 1 / span 1;
     grid-row: 11/ span 12;
     margin-top: 100px;
@@ -153,11 +156,11 @@ td {
     padding: 0px 25px 0px 20px;
 }
 
-.showingLabel{
+.pl_showingLabel{
     float: left;
 }
 
-.paginationLabel {
+.pl_paginationLabel {
     float : right;
 }
 
@@ -176,34 +179,15 @@ td {
     border-radius: 5px;
   }
 
-.custom-select-div {
+.pl_custom-select-div {
     grid-column: 3 / span 4;
     width : 90%;
     height: 30px;
     padding-top: 20px;
 }
-.custom-select {
+.pl_custom-select {
     width: 95%;
     height: 30px;
     border: 1px solid #BFBFBF;
     color: #423A8E;
 }
-
-.formAction-dropdown {
-    appearance: none;
-    border: none;
-    width: 22px;
-    height: 22px;
-    background-image: url("../../../images/FormTableDropdwn.png");
-    background-color: var(--parent-bg-color);
-}
-
-.active-form {
-    color: #12AA85;
-    padding-right: 5px;
-  }
-  
-  .deleted-form {
-    color: #D93535;
-    padding-right: 5px;
-  }
