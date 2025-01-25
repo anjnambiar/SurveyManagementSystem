@@ -38,7 +38,7 @@ function AddForm() {
 
                     <div className='backLinkDiv'>
                         <Link className='backLink' to={'/survey/adminForms'} >
-                            &#9001;  Back
+                            &lt; Back
                         </Link>
                     </div>
 

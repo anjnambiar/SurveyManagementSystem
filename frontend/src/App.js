@@ -10,7 +10,8 @@ import AdminForms from "./components/views/AdminFormsView/AdminForms.js";
 import Profile from "./components/views/ProfileView/Profile.js";
 import User from "./components/views/UserView/User.js";
 import AddForm from './components/views/AddFormView/AddForm.js';
-import ViewForm from './components/views/AdminFormsView/ViewForm.js';
+import ParticipantList from './components/views/ParticipantListView/ParticipantList.js';
+import ViewForm from './components/views/ViewFormView/ViewForm.js';
 
 function App() {
 
@@ -37,7 +38,8 @@ function App() {
             <Route path="survey/profile" element={<Profile/>}></Route>
             <Route path="survey/user" element={<User/>}></Route>
             <Route path="survey/addForms" element={<AddForm/>}></Route>
-            <Route path='/survey/viewForm' element={<ViewForm/>}></Route>
+            <Route path="/survey/participantList/:formId" element={<ParticipantList/>}></Route>
+            <Route path="survey/viewform/:formId" element={<ViewForm/>}></Route>
             <Route path="*" element={<h1>Not found</h1>}></Route>
           </Route>
       </Routes>

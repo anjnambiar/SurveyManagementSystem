@@ -22,12 +22,26 @@ function AdminForms () {
         navigate('/survey/addForms');
     }
 
-    const handleFormActionDropdownClick = () => {
-        let selectValue = document.getElementById('formAction_select').value;
-        if(selectValue === 'delete') navigate('');
-        if(selectValue === 'view_form') navigate('/survey/viewForm');
-        if(selectValue === 'view_participants') navigate('');
+    const handleFormActionDropdownClick = (event,tableEntry) => {
+
+        if(event.target.value === 'delete') {
+            axios.delete(`http://127.0.0.1:8000/survey/surveyDetail/${tableEntry.id}/`)
+            .then(response => {
+                if(response.status === 200) {
+                    tableEntry.status = false;
+                    navigate('/survey/adminForms');
+                }
+            })
+            .catch(error => console.log("Delete form error : ",error))
+        }
+
+        if(event.target.value === 'view_participants') {
+            navigate(`/survey/participantList/${tableEntry.id}`);
+        }
+
     }
+
+
 
     return (
         <div className="adminFormsDiv">
@@ -45,9 +59,9 @@ function AdminForms () {
                         <label className='entityLabel'>Entities :</label>
                         <div className="custom-select-div">
                             <select className="custom-select">
-                                <option value="100">100</option>
-                                <option value="50">50</option>
+                                <option value="10">10</option>
                                 <option value="25">25</option>
+                                <option value="50">50</option>
                             </select>
                         </div>
 
@@ -73,17 +87,19 @@ function AdminForms () {
                                 <tr key={tableEntry.id}>
                                     <td>{tableEntry.title}</td>
                                     <td>{tableEntry.description}</td>
-                                    <td>{tableEntry.reward_points}</td>
-                                    <td>{tableEntry.status == true ? "Active" : "Deleted"}</td>
+                                    <td>{tableEntry.reward_points} pt</td>
+                                    <td>{tableEntry.status === true ?
+                                            (<><span className="active-form">●</span><span>Active</span></>) :
+                                            (<><span className="deleted-form">●</span><span>Deleted</span></>)
+                                        }</td>
                                     <td>
-                                    { tableEntry.status == true ?
+                                    { tableEntry.status === true ?
                                         <select id='formAction_select'
                                             className="formAction-dropdown"
-                                            onChange={handleFormActionDropdownClick}>
-                                                <option value='delete'></option>
+                                            onChange={(event)=>handleFormActionDropdownClick(event,tableEntry)}>
+                                                <option></option>
                                             <option value='delete'>Delete</option>
-                                            <option value='view_form'>View Form</option>
-                                            <option valuw='view_participants'>View Participant List</option>
+                                            <option value='view_participants'>View Participant List</option>
                                         </select>
                                         : null }
                                     </td>
