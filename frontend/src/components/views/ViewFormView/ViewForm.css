@@ -1,0 +1,107 @@
+.viewFormDiv {
+    margin : 30px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 10px 20px #ccc;
+    font-family: Inter;
+    color: #423A8E;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    grid-column: 1 / span 1;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.vf_backLinkDiv {
+    float: left;
+    grid-column: 1 / span 1;
+}
+
+.vf_backLink {
+    text-decoration: none;
+}
+
+.vf_surveyDiv {
+    grid-column: 1 / span 1;
+    display: block;
+    margin: auto;
+}
+
+#vf_title {
+    color: #423A8E;
+    font-family: Inter;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 43.57px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.vf_descriptionDiv {
+    color : #000000;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.vf_index {
+    color : #423A8E;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.05px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;    
+}
+
+.vf_questTitle {
+    color : #423A8E;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.mcqDiv {
+    color :#423A8E;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.75px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+#saInput {
+    background-color : #F0EEEE;
+    color : #423A8E;
+    border: 1px solid #ABABAB;
+    width: 400px;
+    height: 40px;
+    top: 154px;
+    left: 69px;
+    gap: 0px;
+    border-radius: 10px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
