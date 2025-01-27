@@ -3,7 +3,8 @@ from rest_framework.views import APIView
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status
-
+from .surveyPagination import SurveyPagination
+from django.db.models import Q
 
 
 class AddSurveyView(APIView) :
@@ -13,8 +14,21 @@ class AddSurveyView(APIView) :
             survey = Survey.objects.all()
         except Survey.DoesNotExist:
          return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = SurveySerializer(survey, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        search_query = request.GET.get("search", None)
+        if search_query :
+            survey = survey.filter(Q(title__icontains=search_query)
+                                   | Q(description__icontains=search_query))
+
+
+       # serializer = SurveySerializer(survey, many=True)
+        pagination = SurveyPagination()
+        page = pagination.paginate_queryset(survey, request)
+        serializer = SurveySerializer(page, many=True)
+
+        return pagination.get_paginated_response(serializer.data)
+        #return Response(serializer.data, status=status.HTTP_200_OK)
+
 
     def post(self, request, *args, **kwargs) :
         serializer = SurveySerializer(data = request.data)
@@ -25,7 +39,6 @@ class AddSurveyView(APIView) :
 
 
 
-
 class SurveyDetailView(APIView):
 
     def get(self, request, pk) : #get a particular survey
@@ -33,16 +46,17 @@ class SurveyDetailView(APIView):
             survey = Survey.objects.get(pk=pk)
         except Survey.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+
         serializer = SurveySerializer(survey)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
 
     def delete(self, request, pk) : #only change status to false to delete survey
         try :
             survey = Survey.objects.get(pk=pk)
         except Survey.DoesNotExist:
          return Response(status=status.HTTP_404_NOT_FOUND)
+
         survey.status = False
         survey.save()
         return Response(status=status.HTTP_200_OK)
-
-

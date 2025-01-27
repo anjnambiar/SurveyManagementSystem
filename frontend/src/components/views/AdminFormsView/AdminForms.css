@@ -159,6 +159,7 @@ td {
 
 .paginationLabel {
     float : right;
+    margin-bottom: 5px;
 }
 
 
@@ -202,8 +203,27 @@ td {
     color: #12AA85;
     padding-right: 5px;
   }
-  
-  .deleted-form {
+
+.deleted-form {
     color: #D93535;
     padding-right: 5px;
-  }
+}
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination .active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.pagination li:hover {
+    cursor: pointer;
+}
