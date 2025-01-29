@@ -38,7 +38,8 @@ class Option(models.Model) :
         return self.option_name or "Option not defined"
 
 
-class Response(models.Model) :
+class Responses(models.Model) :
+    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null = True)
     answer = models.CharField(max_length=255)

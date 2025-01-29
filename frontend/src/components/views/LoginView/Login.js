@@ -20,7 +20,13 @@ function Login(props) {
             {email, password})
             .then(response => {
                 localStorage.setItem("username", response.data.name);
-                return navigate('/survey/adminForms', {replace:true});
+                localStorage.setItem("user_id", response.data.id);
+                if (response.data.is_staff) {
+                    localStorage.setItem("is_staff", "admin");
+                    return navigate('/survey/adminForms', {replace:true});
+                }
+                else
+                    return navigate('/survey/userForms', {replace:true});
             }).catch(error => {
                 setAuthErrorMessage('Invalid username or password');
             })

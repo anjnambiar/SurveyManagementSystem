@@ -1,16 +1,23 @@
 import './ParticipantList.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const ParticipantList = () => {
 
-    const {formId} = useParams();
+    const {surveyId} = useParams();
     const [participantList, setParticipantList] = useState([]);
     const navigate = useNavigate();
 
-    const handleViewFormClick = () => {
-        navigate(`/survey/viewform/${formId}`); //need to send user id and survey id to fetch survey filled by that user
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/survey/participantList/${surveyId}/`)
+            .then(response => setParticipantList(response.data))
+            .catch(error => console.log(error))
+    }, [surveyId]);
+
+    const handleViewFormClick = (participant) => {
+        navigate(`/survey/viewform/${surveyId}/${participant.id}`); //need to send user id and survey id to fetch survey filled by that user
     }
 
     return (
@@ -55,19 +62,12 @@ const ParticipantList = () => {
                                 {participantList.map(participant => (
                                     <tr key={participant.id}>
                                         <td>{participant.name}</td>
-                                        <td>{participant.contactNumber}</td>
+                                        <td>{participant.contactNum}</td>
                                         <td>{participant.email}</td>
                                         <td><button className='pl_viewFormbtn' type='button'
-                                                    onClick={handleViewFormClick}>View form</button></td>
+                                                    onClick={()=>handleViewFormClick(participant)}>View form</button></td>
                                     </tr>
                                 ))}
-                                <tr>
-                                        <td>user 1</td>
-                                        <td>1234567890</td>
-                                        <td>user1@test.com</td>
-                                        <td><button className='pl_viewFormbtn' type='button'
-                                                    onClick={handleViewFormClick}>View form</button></td>
-                                    </tr>
                             </tbody>
                         </table>
                     </div>

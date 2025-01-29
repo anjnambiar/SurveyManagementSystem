@@ -5,14 +5,28 @@ import axios from 'axios';
 
 const ViewForm = () => {
 
-    const {formId} = useParams();
+    const {surveyId, participantId} = useParams();
     const [viewFormData, setviewFormData] = useState({questions : []});
+    const [responseValue, setResponseValue] = useState({});
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/survey/surveyDetail/${formId}`)
+        axios.get(`http://127.0.0.1:8000/survey/surveyDetail/${surveyId}/`)
         .then(response => setviewFormData(response.data))
         .catch(error => console.log(error))
-    }, [formId]);
+    }, [surveyId]);
+
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/survey/surveyResponse/${surveyId}/${participantId}/`)
+        .then(response => {
+            const responseData = response.data.reduce((acc, curr) => {
+                                acc[curr.question] = curr.answer;  // Make responseData an object
+                                return acc;
+                                }, {});
+            setResponseValue(responseData);  // Store responses as an object
+            })
+        .catch(error => console.log(error))
+    },[surveyId, participantId]);
 
 
     return (
@@ -21,7 +35,7 @@ const ViewForm = () => {
             <div className='viewFormDiv'>
 
                 <div className='vf_backLinkDiv'>
-                    <Link className='vf_backLink' to={`/survey/participantList/${formId}`} >
+                    <Link className='vf_backLink' to={`/survey/participantList/${surveyId}`} >
                         &lt; Back
                     </Link>
                 </div>
@@ -45,13 +59,17 @@ const ViewForm = () => {
                                 {
                                     question.question_type === 'SA' ?
                                         (<div className='saDiv'>
-                                            <input id='saInput' type='text' value='' disabled/>
+                                            <input id={`saInput-${question.id}`}
+                                                type='text' disabled
+                                                value={responseValue[question.id] || ''} />
                                         </div>)
                                     :
                                         (<div className='mcqDiv'>{
                                             question.options.map(option => (
-                                            <span className='mcqSpan'>
-                                            <input id='mcqInput' type='radio' disabled/>{option.option_name}
+                                            <span key={option.id} className='mcqSpan'>
+                                                <input id={`mcqInput-${option.id}`} type='radio' disabled
+                                                    checked={responseValue[question.id] === option.option_name}/>  {/*Check if this option was selected based on the response*/}
+                                                <label id={`mcqLabel-${option.id}`}>{option.option_name}</label>
                                             </span>
                                             ))
                                         }</div>)
