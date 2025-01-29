@@ -1,25 +1,31 @@
-import AdminForms from '../AdminFormsView/AdminForms';
-import User from '../UserView/User.js';
-import Profile from '../ProfileView/Profile.js';
 import './SurveyMain.css';
-import {Link, Outlet, Route, Routes, useNavigate} from 'react-router-dom';
+import {Link, Outlet, useNavigate} from 'react-router-dom';
 import FormIcon from '../../../images/FormIcon.png';
 import ProfileIcon from '../../../images/ProfileIcon.png';
 import UserIcon from '../../../images/UserIcon.png';
 import LogoutIcon from '../../../images/LogoutIcon.png';
-import AddForm from '../AddFormView/AddForm.js';
 import { useEffect, useState } from 'react';
 
 
 function SurveyMain() {
 
     const userName = localStorage.getItem('username') ;
+    const is_staff = localStorage.getItem("is_staff") ;
 
     const [headerName, setHeaderName] = useState('Forms');
 
+    let link ;
+    if(is_staff) {
+        link = <Link to='survey/adminForms' className='surveyMainLink'
+                    onClick={()=>{setHeaderName('Forms')}}>Forms</Link>
+    } else {
+        link = <Link to='survey/userForms' className='surveyMainLink'
+                    onClick={()=>{setHeaderName('Forms')}}>Forms</Link>
+    }
+
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem('username');
+        localStorage.clear();
         return navigate('/');
     }
 
@@ -40,8 +46,7 @@ function SurveyMain() {
 
                     <div className='formLinkDiv leftLinkDiv'>
                         <img className='survey_icons' src={FormIcon} alt='formIcon' />
-                        <Link to='survey/adminForms' className='surveyMainLink'
-                            onClick={()=>{setHeaderName('Forms')}}>Forms</Link>
+                        { link }
                     </div>
 
                     <div className='profileLinkDiv leftLinkDiv'>

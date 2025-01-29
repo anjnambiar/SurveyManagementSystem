@@ -40,6 +40,7 @@ class UserRegisterView(APIView) :
 #View to authenticate user login
 class UserLoginAuthenticateView(APIView) :
     def post(self, request) :
+        print("user", request)
         user = authenticate(email=request.data['email'], password=request.data['password'])
         if user and user.is_active :
             login(request, user) #login successfully if user is valid
@@ -52,6 +53,7 @@ class UserLoginAuthenticateView(APIView) :
             "name" : user.name,
             "contactNum" : user.contactNum,
             "is_active" : user.is_active,
+            "is_staff" : user.is_staff,
             "acess_token" : access_token,
             "refresh_token" : str(refresh)
             }

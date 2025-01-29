@@ -2,8 +2,14 @@ from rest_framework import serializers
 from .models import *
 
 
-class OptionSerializer(serializers.ModelSerializer) :
+class ResponsesSerializer(serializers.ModelSerializer) :
+    class Meta :
+        model = Responses
+        fields = ['id', 'survey', 'question', 'user', 'answer']
 
+
+
+class OptionSerializer(serializers.ModelSerializer) :
     class Meta :
         model = Option
         fields =['id', 'option_name']
@@ -12,7 +18,6 @@ class OptionSerializer(serializers.ModelSerializer) :
 
 class QuestionSerializer(serializers.ModelSerializer) :
     options = OptionSerializer(many=True)
-
     class Meta :
         model = Question
         fields = ['id', 'question_title', 'question_type', 'options']
@@ -21,13 +26,11 @@ class QuestionSerializer(serializers.ModelSerializer) :
 
 class SurveySerializer(serializers.ModelSerializer) :
     questions = QuestionSerializer(many=True)
-
     class Meta :
         model = Survey
         fields = ['id', 'title', 'description', 'reward_points', 'status', 'created_at', 'questions']
 
     def create(self, validated_data) :
-
         questions_data = validated_data.pop('questions',[])
         survey = Survey.objects.create(**validated_data)
 

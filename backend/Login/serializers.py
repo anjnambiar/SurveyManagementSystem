@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 
 
 class CustomUserSerializer(serializers.Serializer) :
+    id = serializers.IntegerField()
     email = serializers.EmailField()
     name = serializers.CharField(max_length = 255)
     contactNum = serializers.IntegerField()

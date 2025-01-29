@@ -61,7 +61,7 @@ function AdminForms () {
     // Search functionality
     const handleSearchInput = (event) => {
         const searchInputText = event.target.value;
-        axios.get(`http://127.0.0.1:8000/survey/addSurvey/?search=${searchInputText}`)
+        axios.get(`http://127.0.0.1:8000/survey/addSurvey/?search=${searchInputText}&page_size=${pageSize}`)
             .then(response => {
                 setTableData(response.data);
                 setTotalPages(response.data.total_pages);
