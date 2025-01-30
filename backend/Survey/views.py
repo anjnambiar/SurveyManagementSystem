@@ -75,8 +75,11 @@ class SurveySubmitView(APIView) :
 # Get all users responded to a survey
 class SurveyParticipantView(APIView) :
     def get(self, request, pk) :
-        survey_id = pk
-        users = CustomUser.objects.filter(responses__survey_id = survey_id).distinct()
+        if not Survey.objects.filter(id=pk).exists():
+            return Response({"error": "Survey not found."}, status=status.HTTP_404_NOT_FOUND)
+        users = CustomUser.objects.filter(responses__survey_id = pk).distinct()
+        if not users.exists():
+            return Response([], status=status.HTTP_200_OK)
         serializer = CustomUserSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -84,9 +87,8 @@ class SurveyParticipantView(APIView) :
 # get response of a survey by a user
 class SurveyResponse(APIView) :
     def get(self, request, survey_id, user_id):
-        try :
-            responses = Responses.objects.filter(survey_id=survey_id, user_id=user_id)
-        except Responses.DoesNotExist :
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        responses = Responses.objects.filter(survey_id=survey_id, user_id=user_id)
+        if not responses.exists():
+            return Response({"error" : "No responses found"}, status=status.HTTP_404_NOT_FOUND)
         serializer = ResponsesSerializer(responses, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
