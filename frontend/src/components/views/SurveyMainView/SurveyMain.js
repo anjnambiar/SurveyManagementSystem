@@ -54,12 +54,12 @@ function SurveyMain() {
                         <Link to='survey/profile' className='surveyMainLink'
                             onClick={()=>{setHeaderName('Profile')}}>Profile</Link>
                     </div>
-
+                    {is_staff ? (
                     <div className='userLinkDiv leftLinkDiv'>
                         <img className='survey_icons' src={UserIcon} alt='userIcon' />
                         <Link to='survey/user' className='surveyMainLink'
                             onClick={()=>{setHeaderName('User')}}>User</Link>
-                    </div>
+                    </div> ): null }
 
                     <div className='logoutDiv leftLinkDiv'>
                         <img className='survey_icons' src={LogoutIcon} alt='logoutIcon' />

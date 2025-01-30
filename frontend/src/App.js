@@ -33,10 +33,8 @@ function App() {
           <Route path="/signUp" element={<SignUp/>}></Route>
           <Route path="/password-reset/:token" element={<PasswordReset/>}></Route>
         </Route>
-      </Routes>
 
-      <Routes>
-        <Route element={ <SurveyMain/> }>
+        <Route element={isLogged ? <SurveyMain /> : <Navigate to="/" />}>
             <Route path="survey/adminForms" element={<AdminForms/>}></Route>
             <Route path="survey/profile" element={<Profile/>}></Route>
             <Route path="survey/user" element={<User/>}></Route>
@@ -45,8 +43,9 @@ function App() {
             <Route path="survey/viewform/:surveyId/:participantId" element={<ViewForm/>}></Route>
             <Route path="survey/userForms" element={<UserForms/>}></Route>
             <Route path="survey/surveyForm/:surveyId" element={<SurveyForm/>}></Route>
-            <Route path="*" element={<h1>Not found</h1>}></Route>
         </Route>
+
+        <Route path="*" element={<h1>Page Not found</h1>}></Route>
       </Routes>
 
     </div>
