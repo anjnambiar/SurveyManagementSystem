@@ -1,8 +1,9 @@
 import './SignUp.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-
+// Login > Sign Up
 function SignUp(props) {
 
     const [name, setName] = useState('');
@@ -12,6 +13,7 @@ function SignUp(props) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [registerMessage, setRegisterMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,6 +27,7 @@ function SignUp(props) {
                     setContactNum('');
                     setPassword('');
                     setConfirmPassword('');
+                    navigate('/');
                 }).catch(error => {
                     setRegisterMessage('User registration failed');
                 })

@@ -5,7 +5,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import Login from '../LoginView/Login.js';
 
-
+// Login > Click Forgot Password
 function ForgotPassword(props) {
 
     const [email, setEmail] = useState('');

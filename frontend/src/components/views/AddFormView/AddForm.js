@@ -4,6 +4,7 @@ import QuestionComponent from './QuestionComponent.js';
 import { useState } from 'react';
 import axios from 'axios';
 
+// Admin > Forms > Add Form
 function AddForm() {
 
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ function AddForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://127.0.0.1:8000/survey/addSurvey/',
+        axios.post('http://127.0.0.1:8000/survey/addSurvey/', // add a new survey
             {title, description, reward_points, questions})
             .then(response => {
                 if (response.status === 201)

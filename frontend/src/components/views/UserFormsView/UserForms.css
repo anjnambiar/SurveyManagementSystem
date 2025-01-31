@@ -129,3 +129,46 @@
 #descr-div-id {
     padding: 10px;
 }
+
+.formTableEntryCountDiv {
+    grid-row: 12/ span 12;
+    margin-top: 10px;
+    color : #2C2C2C;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    padding: 0px 25px 0px 20px;
+}
+
+.paginationLabel {
+    float : right;
+    margin-bottom: 5px;
+}
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+    font-size: 15px;
+}
+
+.pagination .active {
+    font-weight: bold;
+    color: #F6F4F0;
+    background-color: #4DA1A9;
+    width: 18px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.pagination li:hover {
+    cursor: pointer;
+}

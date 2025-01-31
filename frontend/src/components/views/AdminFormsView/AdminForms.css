@@ -155,6 +155,7 @@ td {
 
 .showingLabel{
     float: left;
+    margin-top: 10px;
 }
 
 .paginationLabel {
@@ -217,11 +218,17 @@ td {
 
 .pagination li {
     margin: 0 5px;
+    font-size: 15px;
 }
 
 .pagination .active {
     font-weight: bold;
-    color: #007bff;
+    color: #F6F4F0;
+    background-color: #4DA1A9;
+    width: 18px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
 }
 
 .pagination li:hover {

@@ -4,6 +4,7 @@ import { Link , useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// User > Form > Click Participate > Interactive survey to participate
 const SurveyForm = () => {
 
     const {surveyId} = useParams();
@@ -11,6 +12,7 @@ const SurveyForm = () => {
     const [responseValue, setResponseValue] = useState({});  // Store responses
     const navigate = useNavigate();
 
+    // all details of survey to populate on the form
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/survey/surveyDetail/${surveyId}`)
         .then(response => setviewFormData(response.data))
@@ -28,7 +30,7 @@ const SurveyForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        // submit survey responses by the user
         Object.entries(responseValue).map(([question_id, answer]) => {
             axios.post('http://127.0.0.1:8000/survey/surveySubmit/', {
                 survey: surveyId,

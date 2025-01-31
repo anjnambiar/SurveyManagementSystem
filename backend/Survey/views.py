@@ -76,12 +76,21 @@ class SurveySubmitView(APIView) :
 class SurveyParticipantView(APIView) :
     def get(self, request, pk) :
         if not Survey.objects.filter(id=pk).exists():
-            return Response({"error": "Survey not found."}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"error": "Survey not found."}, status=status.HTTP_204_NO_CONTENT)
         users = CustomUser.objects.filter(responses__survey_id = pk).distinct()
         if not users.exists():
             return Response([], status=status.HTTP_200_OK)
-        serializer = CustomUserSerializer(users, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        search_query = request.GET.get("search", None)
+        if search_query :
+            users = users.filter(Q(name__icontains=search_query)
+                                   | Q(email__icontains=search_query)
+                                   | Q(contactNum__icontains=search_query))
+
+        pagination = SurveyPagination()
+        page = pagination.paginate_queryset(users, request)
+        serializer = CustomUserSerializer(page, many=True)
+        return pagination.get_paginated_response(serializer.data)
+
 
 
 # get response of a survey by a user
@@ -89,6 +98,19 @@ class SurveyResponse(APIView) :
     def get(self, request, survey_id, user_id):
         responses = Responses.objects.filter(survey_id=survey_id, user_id=user_id)
         if not responses.exists():
-            return Response({"error" : "No responses found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"error" : "No responses found"}, status=status.HTTP_204_NO_CONTENT)
         serializer = ResponsesSerializer(responses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+# get all survey participated by a user
+class UserParticipatedView(APIView) :
+    def get(self, request, pk) :
+        if not CustomUser.objects.filter(id=pk).exists():
+            return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
+        surveys = Survey.objects.filter(responses__user_id = pk).distinct()
+        if not surveys.exists():
+            return Response([], status=status.HTTP_200_OK)
+        serializer = SurveySerializer(surveys, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

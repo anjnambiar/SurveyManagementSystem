@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 
 
 class CustomUserSerializer(serializers.Serializer) :
-    id = serializers.IntegerField()
+    id = serializers.IntegerField(read_only=True)
     email = serializers.EmailField()
     name = serializers.CharField(max_length = 255)
     contactNum = serializers.IntegerField()
@@ -22,6 +22,8 @@ class CustomUserSerializer(serializers.Serializer) :
             is_active = validated_data['is_active'],
             is_staff = validated_data['is_staff']
         )
+        # Access the user.id after the user is created
+        user_id = user.id
         return user
 
     def validate_password(self, value) :
