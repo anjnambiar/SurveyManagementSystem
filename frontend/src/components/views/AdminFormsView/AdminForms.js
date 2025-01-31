@@ -69,7 +69,6 @@ function AdminForms () {
             .catch(error => console.log(error));
     }
 
-
     // Entity dropdown change / page size change
     const handleEntityChange = (event) => {
         setPageSize(parseInt(event.target.value));

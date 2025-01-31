@@ -30,6 +30,14 @@ const ViewForm = () => {
         .catch(error => console.log(error))
     },[surveyId, participantId]);
 
+    let link ;
+    if(localStorage.getItem("is_staff")) {
+        link = <Link className='vf_backLink' to={`/survey/participantList/${surveyId}`} >
+                &lt; Back </Link>
+    } else {
+        link = <Link className='vf_backLink' to={`/survey/userParticipatedForms/`} >
+            &lt; Back </Link>
+    }
 
     return (
         <div className='viewForm'>
@@ -37,9 +45,7 @@ const ViewForm = () => {
             <div className='viewFormDiv'>
 
                 <div className='vf_backLinkDiv'>
-                    <Link className='vf_backLink' to={`/survey/participantList/${surveyId}`} >
-                        &lt; Back
-                    </Link>
+                    {link}
                 </div>
 
                 <div className='vf_surveyDiv'>

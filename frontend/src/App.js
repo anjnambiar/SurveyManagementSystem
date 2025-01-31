@@ -1,6 +1,6 @@
 import './App.css';
 import axios from 'axios';
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Main from './components/views/MainView/Main.js'
 import Login from "./components/views/LoginView/Login.js";
 import ForgotPassword from "./components/views/ForgotPasswordView/ForgotPassword.js";
@@ -16,13 +16,14 @@ import ViewForm from './components/views/ViewFormView/ViewForm.js';
 import UserForms from './components/views/UserFormsView/UserForms.js';
 import SurveyForm from './components/views/SurveyFormView/SurveyForm.js';
 import UserParticipatedForms from './components/views/UserParticipatedFormsView/UserParticipatedForms.js';
+import UserSurvey from './components/views/UserSurveyView/UserSurvey.js';
 
 function App() {
 
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-  const isLogged = localStorage.getItem('username') == null ? false : true;
+  //const isLogged = localStorage.getItem('username') == null ? false : true;
 
   return (
     <div className="App">
@@ -45,6 +46,7 @@ function App() {
             <Route path="survey/userForms" element={<UserForms/>}></Route>
             <Route path="survey/surveyForm/:surveyId" element={<SurveyForm/>}></Route>
             <Route path="/survey/userParticipatedForms/" element={<UserParticipatedForms/>}></Route>
+            <Route path="/survey/userSurvey/:userId" element={<UserSurvey/>}></Route>
         </Route>
 
         <Route path="*" element={<h1>Page Not found</h1>}></Route>

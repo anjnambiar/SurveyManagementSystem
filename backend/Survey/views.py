@@ -15,19 +15,16 @@ class AddSurveyView(APIView) :
             survey = Survey.objects.all()
         except Survey.DoesNotExist:
          return Response(status=status.HTTP_404_NOT_FOUND)
-
+        #search functionality
         search_query = request.GET.get("search", None)
         if search_query :
             survey = survey.filter(Q(title__icontains=search_query)
                                    | Q(description__icontains=search_query))
-
-       # serializer = SurveySerializer(survey, many=True)
+       # pagination functionality
         pagination = SurveyPagination()
         page = pagination.paginate_queryset(survey, request)
         serializer = SurveySerializer(page, many=True)
-
         return pagination.get_paginated_response(serializer.data)
-        #return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     def post(self, request, *args, **kwargs) :
@@ -38,6 +35,7 @@ class AddSurveyView(APIView) :
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 # Get details of a survey from model
 class SurveyDetailView(APIView):
 
@@ -46,7 +44,6 @@ class SurveyDetailView(APIView):
             survey = Survey.objects.get(pk=pk)
         except Survey.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
         serializer = SurveySerializer(survey)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -64,6 +61,7 @@ class SurveyDetailView(APIView):
 
 # Response of a survey
 class SurveySubmitView(APIView) :
+
     def post(self, request) :
         serializer = ResponsesSerializer(data = request.data)
         if serializer.is_valid() :
@@ -72,8 +70,10 @@ class SurveySubmitView(APIView) :
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 # Get all users responded to a survey
 class SurveyParticipantView(APIView) :
+
     def get(self, request, pk) :
         if not Survey.objects.filter(id=pk).exists():
             return Response({"error": "Survey not found."}, status=status.HTTP_204_NO_CONTENT)
@@ -95,6 +95,7 @@ class SurveyParticipantView(APIView) :
 
 # get response of a survey by a user
 class SurveyResponse(APIView) :
+
     def get(self, request, survey_id, user_id):
         responses = Responses.objects.filter(survey_id=survey_id, user_id=user_id)
         if not responses.exists():
@@ -106,11 +107,20 @@ class SurveyResponse(APIView) :
 
 # get all survey participated by a user
 class UserParticipatedView(APIView) :
+
     def get(self, request, pk) :
         if not CustomUser.objects.filter(id=pk).exists():
             return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
         surveys = Survey.objects.filter(responses__user_id = pk).distinct()
         if not surveys.exists():
             return Response([], status=status.HTTP_200_OK)
-        serializer = SurveySerializer(surveys, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        #search functionality
+        search_query = request.GET.get("search", None)
+        if search_query :
+            surveys = surveys.filter(Q(title__icontains=search_query)
+                                   | Q(description__icontains=search_query))
+       # pagination functionality
+        pagination = SurveyPagination()
+        page = pagination.paginate_queryset(surveys, request)
+        serializer = SurveySerializer(page, many=True)
+        return pagination.get_paginated_response(serializer.data)

@@ -13,7 +13,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
-
+from Survey.surveyPagination import SurveyPagination
+from django.db.models import Q
 
 # Create your views here.
 
@@ -117,9 +118,47 @@ class PasswordResetView(APIView) :
 
 
 
-
 # view to logout user
 class UserLogoutView(APIView) :
     def post(self, request) :
         logout(request)
+        return Response(status=status.HTTP_200_OK)
+
+
+
+# view for getting all users
+class UserFetchView(APIView) :
+    def get(self, request) :
+        users = CustomUser.objects.all()
+        #serializer = CustomUserSerializer(users, many=True)
+        #return Response(serializer.data, status=status.HTTP_200_OK)
+        if not users.exists():
+            return Response([], status=status.HTTP_200_OK)
+        search_query = request.GET.get("search", None)
+        if search_query :
+            users = users.filter(Q(name__icontains=search_query)
+                                   | Q(email__icontains=search_query)
+                                   | Q(contactNum__icontains=search_query))
+
+        pagination = SurveyPagination()
+        page = pagination.paginate_queryset(users, request)
+        serializer = CustomUserSerializer(page, many=True)
+        return pagination.get_paginated_response(serializer.data)
+
+
+# add reward points to user when completing a survey
+class UserAddReward(APIView) :
+    def post(self, request, points, userId):
+        user = CustomUser.objects.get(pk = userId)
+        user.reward_points = user.reward_points + points
+        user.save()
+        return Response(status=status.HTTP_200_OK)
+
+
+# delete a user - set is_active to false
+class UserDeleteView(APIView) :
+    def post(self, request, pk) :
+        user = CustomUser.objects.get(pk = pk)
+        user.is_active = False
+        user.save()
         return Response(status=status.HTTP_200_OK)
