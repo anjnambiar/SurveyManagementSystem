@@ -39,8 +39,11 @@ const SurveyForm = () => {
                 answer: answer || ''
             })
             .then(response => {
-                navigate('/survey/userForms');
+               return axios.post(`http://127.0.0.1:8000/login/addReward/${viewFormData.reward_points}/${localStorage.getItem('user_id')}/`) // add reward points when user submits a survey
             })
+            .then( response =>
+                navigate('/survey/userForms')
+            )
             .catch(error => console.log(error))
         });
     }

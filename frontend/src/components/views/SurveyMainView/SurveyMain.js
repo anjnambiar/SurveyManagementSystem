@@ -50,7 +50,7 @@ function SurveyMain() {
                     </div>
 
                     <div className='profileLinkDiv leftLinkDiv'>
-                        <img className='survey_icons' src={ProfileIcon} alt='profileIcon' />
+                        <img className='survey_icons' src={ProfileIcon} alt='profileIcon'/>
                         <Link to='survey/profile' className='surveyMainLink'
                             onClick={()=>{setHeaderName('Profile')}}>Profile</Link>
                     </div>

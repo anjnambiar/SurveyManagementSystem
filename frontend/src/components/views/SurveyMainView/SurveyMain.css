@@ -80,12 +80,16 @@
     font-weight: 600;
     line-height: 29.05px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     color: #F6F4F0;
     text-decoration: none;
     padding-left: 5px;
+    text-decoration: none;
 }
+
+.surveyMainLink:active {
+    text-decoration: underline;
+}
+
 
 .rightPanel {
     grid-column: 2 / span 12;

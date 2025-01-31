@@ -30,6 +30,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin) :
     password = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    reward_points = models.IntegerField(default=0)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS=["name","contactNum","password"]

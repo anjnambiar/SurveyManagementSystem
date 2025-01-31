@@ -59,9 +59,9 @@ const UserForms = () => {
         navigate('/survey/userParticipatedForms/');
     }
 
-      // Pagination handling with react pagination
-      const handlePageChange = (data) => {
-        setCurrentPage(data.selected + 1);
+    // Pagination handling with react pagination
+    const handlePageChange = (data) => {
+        setCurrentPage(data.selected + 1);  
     };
 
     // Search functionality
@@ -93,7 +93,7 @@ const UserForms = () => {
         </div>
 
         <div className='survey-card-div'>
-            {allSurvey.results ? allSurvey.results.map(surv => (
+            {allSurvey.results ? allSurvey.results.map(surv => ( surv.status &&
             <div key={surv.id} className='survey-card'> {/*dynamically populated*/}
                 <div id='points-div-id'><label id='points-id'>
                     <img src={PointsImg} alt='points-image'/><br/>

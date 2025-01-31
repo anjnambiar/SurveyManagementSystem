@@ -11,6 +11,7 @@ class CustomUserSerializer(serializers.Serializer) :
     password = serializers.CharField(write_only=True)
     is_active = serializers.BooleanField(default=True)
     is_staff = serializers.BooleanField(default=False)
+    reward_points = serializers.IntegerField(default=0)
 
     def create(self, validated_data):
         #Create and return a new CustomUser instance using validated data
@@ -20,7 +21,8 @@ class CustomUserSerializer(serializers.Serializer) :
             contactNum = validated_data['contactNum'],
             password = validated_data['password'],
             is_active = validated_data['is_active'],
-            is_staff = validated_data['is_staff']
+            is_staff = validated_data['is_staff'],
+            reward_points = validated_data['reward_points']
         )
         # Access the user.id after the user is created
         user_id = user.id
