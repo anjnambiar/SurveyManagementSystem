@@ -3,21 +3,49 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 
+// Admin > Forms > View Participants
 const ParticipantList = () => {
 
     const {surveyId} = useParams();
-    const [participantList, setParticipantList] = useState([]);
+    const [participantList, setParticipantList] = useState({results:[]});
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [pageSize, setPageSize] = useState(5);
+    // Calculate the range of items being shown
+    const startIndex = (currentPage - 1) * pageSize + 1; // First entry on current page
+    const endIndex = Math.min(currentPage * pageSize, participantList.count); // Last entry on current page
     const navigate = useNavigate();
 
+    // users participated in the given survey
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/survey/participantList/${surveyId}/`)
-            .then(response => setParticipantList(response.data))
+        axios.get(`http://127.0.0.1:8000/survey/participantList/${surveyId}/?page=${currentPage}&page_size=${pageSize}`)
+            .then(response => {
+                setParticipantList(response.data);
+                setTotalPages(response.data.total_pages);
+            })
             .catch(error => console.log(error))
-    }, [surveyId]);
+    }, [surveyId, currentPage, pageSize]);
 
     const handleViewFormClick = (participant) => {
         navigate(`/survey/viewform/${surveyId}/${participant.id}`); //need to send user id and survey id to fetch survey filled by that user
+    }
+
+     // Pagination handling with react pagination
+     const handlePageChange = (data) => {
+        setCurrentPage(data.selected + 1);
+    };
+
+    // Search functionality
+    const handleSearchInput = (event) => {
+        const searchInputText = event.target.value;
+        axios.get(`http://127.0.0.1:8000/survey/participantList/${surveyId}/?search=${searchInputText}&page_size=${pageSize}`)
+            .then(response => {
+                setParticipantList(response.data);
+                setTotalPages(response.data.total_pages);
+            })
+            .catch(error => console.log(error));
     }
 
     return (
@@ -44,7 +72,8 @@ const ParticipantList = () => {
 
                         </div>
                         <div className='pl_searchInputDiv'>
-                            <input className='pl_searchInput' type="text" placeholder="Search &#x1F50D;"/>
+                            <input className='pl_searchInput' type="text" placeholder="Search &#x1F50D;"
+                            onChange={handleSearchInput}/>
                         </div>
                     </div>
 
@@ -59,7 +88,7 @@ const ParticipantList = () => {
                             </tr>
                             </thead>
                             <tbody>
-                                {participantList.map(participant => (
+                                {participantList.results ? participantList.results.map(participant => (
                                     <tr key={participant.id}>
                                         <td>{participant.name}</td>
                                         <td>{participant.contactNum}</td>
@@ -67,15 +96,31 @@ const ParticipantList = () => {
                                         <td><button className='pl_viewFormbtn' type='button'
                                                     onClick={()=>handleViewFormClick(participant)}>View form</button></td>
                                     </tr>
-                                ))}
+                                )) : null}
                             </tbody>
                         </table>
                     </div>
 
                     <div className='pl_participantTableEntryCountDiv'>
-                        <label className='pl_showingLabel'>Showing 1 to {participantList.length} of {participantList.length} entries</label>
-                        <label className='pl_paginationLabel'>*Pagination component comes here</label>
-                    </div>
+                    {   participantList.length !== 0 ?
+                        <> <label className='pl_showingLabel'>
+                            Showing {startIndex} to {endIndex} of {participantList.length} entries
+                        </label>
+                        <div className='pl_paginationLabel'>
+                            <ReactPaginate
+                                pageCount={totalPages}
+                                pageRangeDisplayed={5}
+                                marginPagesDisplayed={2}
+                                onPageChange={handlePageChange}
+                                containerClassName={'pagination'}
+                                activeClassName={'active'}
+                                previousLabel={'Prev'}
+                                nextLabel={'Next'}
+                                breakLabel={'...'}
+                            />
+                        </div> </>
+                        : 'No entries available'  }
+                </div>
 
                 </div>
 

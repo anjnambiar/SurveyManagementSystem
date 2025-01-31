@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+// Login > Forgot Passowrd > Email > Password Reset
 function PasswordReset(props) {
 
     const [password, setPassword] = useState('');

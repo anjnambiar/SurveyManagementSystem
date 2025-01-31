@@ -3,6 +3,7 @@ import OptionsComponent from './OptionsComponent.js';
 import './AddForm.css';
 import { useState } from 'react';
 
+// Admin > Forms > Add Form > Questions Component (dynamic)
 const QuestionComponent = ({questions, setQuestion}) => {
 
     const [questDivs, setQuestDivs] = useState([{id:1, inputValue:"", dropdwnValue:"SA", options:[ { option_name:'' }]}]);

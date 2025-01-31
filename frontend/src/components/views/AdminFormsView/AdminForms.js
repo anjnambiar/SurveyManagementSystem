@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
+// Admin > Forms
 function AdminForms () {
 
     const navigate = useNavigate();
@@ -119,7 +119,7 @@ function AdminForms () {
                         </tr>
                         </thead>
                         <tbody>
-                            {tableData.results.map(tableEntry => (
+                            { tableData.results ? tableData.results.map(tableEntry => (
                                 <tr key={tableEntry.id}>
                                     <td>{tableEntry.title}</td>
                                     <td>{tableEntry.description}</td>
@@ -140,13 +140,16 @@ function AdminForms () {
                                         : null }
                                     </td>
                                 </tr>
-                            ))}
+                            )) : null}
                         </tbody>
                     </table>
                 </div>
 
                 <div className='formTableEntryCountDiv'>
-                    <label className='showingLabel'>Showing {startIndex} to {endIndex} of {tableData.count} entries</label>
+                {   tableData.length !== 0 ?
+                    <><label className='showingLabel'>
+                        Showing {startIndex} to {endIndex} of {tableData.length} entries
+                    </label>
                     <div className='paginationLabel'>
                         <ReactPaginate
                             pageCount={totalPages}
@@ -159,8 +162,8 @@ function AdminForms () {
                             nextLabel={'Next'}
                             breakLabel={'...'}
                         />
-                    </div>
-
+                    </div> </>
+                    : 'No entries available'  }
                 </div>
 
             </div>

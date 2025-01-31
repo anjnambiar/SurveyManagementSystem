@@ -15,6 +15,7 @@ import ParticipantList from './components/views/ParticipantListView/ParticipantL
 import ViewForm from './components/views/ViewFormView/ViewForm.js';
 import UserForms from './components/views/UserFormsView/UserForms.js';
 import SurveyForm from './components/views/SurveyFormView/SurveyForm.js';
+import UserParticipatedForms from './components/views/UserParticipatedFormsView/UserParticipatedForms.js';
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
           <Route path="/password-reset/:token" element={<PasswordReset/>}></Route>
         </Route>
 
-        <Route element={isLogged ? <SurveyMain /> : <Navigate to="/" />}>
+        <Route element={ <SurveyMain/> }>
             <Route path="survey/adminForms" element={<AdminForms/>}></Route>
             <Route path="survey/profile" element={<Profile/>}></Route>
             <Route path="survey/user" element={<User/>}></Route>
@@ -43,9 +44,11 @@ function App() {
             <Route path="survey/viewform/:surveyId/:participantId" element={<ViewForm/>}></Route>
             <Route path="survey/userForms" element={<UserForms/>}></Route>
             <Route path="survey/surveyForm/:surveyId" element={<SurveyForm/>}></Route>
+            <Route path="/survey/userParticipatedForms/" element={<UserParticipatedForms/>}></Route>
         </Route>
 
         <Route path="*" element={<h1>Page Not found</h1>}></Route>
+
       </Routes>
 
     </div>

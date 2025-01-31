@@ -3,19 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { Link , useParams } from 'react-router-dom';
 import axios from 'axios';
 
+// Admin > Forms > Select View Participants > Click View Form btn > Survey details autopopulated with user response
 const ViewForm = () => {
 
     const {surveyId, participantId} = useParams();
     const [viewFormData, setviewFormData] = useState({questions : []});
     const [responseValue, setResponseValue] = useState({});
 
+    // all details of survey to display on form
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/survey/surveyDetail/${surveyId}/`)
         .then(response => setviewFormData(response.data))
         .catch(error => console.log(error))
     }, [surveyId]);
 
-
+    // get responses of a user for that survey
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/survey/surveyResponse/${surveyId}/${participantId}/`)
         .then(response => {

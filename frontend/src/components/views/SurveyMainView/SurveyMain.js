@@ -6,7 +6,7 @@ import UserIcon from '../../../images/UserIcon.png';
 import LogoutIcon from '../../../images/LogoutIcon.png';
 import { useEffect, useState } from 'react';
 
-
+// Login > Main Component to render all details after login
 function SurveyMain() {
 
     const userName = localStorage.getItem('username') ;

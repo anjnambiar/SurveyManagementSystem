@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './AddForm.css';
 
-
+// Admin > Forms > Add Form > Options Component (dynamic)
 const OptionsComponent = ({id, setQuestDivs, questDivs}) => {
 
     const [optionInputs, setOptionInputs] = useState([{id : 1 , value : ""}]);
