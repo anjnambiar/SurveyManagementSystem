@@ -49,47 +49,47 @@ const SurveyForm = () => {
     }
 
     return (
-        <div className='viewForm'>
+        <div className='surveyForm'>
 
-            <div className='viewFormDiv'>
+            <div className='surveyFormDiv'>
 
-                <div className='vf_backLinkDiv'>
-                    <Link className='vf_backLink' to={`/survey/userForms/`} >
+                <div className='sf_backLinkDiv'>
+                    <Link className='sf_backLink' to={`/survey/userForms/`} >
                         &lt; Back
                     </Link>
                 </div>
 
-                <div className='vf_surveyDiv'>
-                    <div className='vf_titleDiv'> <h1 id='vf_title'> {viewFormData.title} </h1> </div>
+                <div className='sf_surveyDiv'>
+                    <div className='sf_titleDiv'> <h1 id='sf_title'> {viewFormData.title} </h1> </div>
 
-                    <div className='vf_descriptionDiv'> {viewFormData.description} </div>
+                    <div className='sf_descriptionDiv'> {viewFormData.description} </div>
 
-                    <div className='vf_questionsDiv'>
+                    <div className='sf_questionsDiv'>
 
                         {viewFormData.questions.map( (question, Qindex) => (
 
-                            <div key={question.id} className='vf_detailsDiv'>
+                            <div key={question.id} className='sf_detailsDiv'>
 
-                                <div className='vf_questDiv'>
-                                    <span className='vf_index'>Q.{Qindex+1}  </span>
-                                    <span className='vf_questTitle'>{question.question_title}</span>
+                                <div className='sf_questDiv'>
+                                    <span className='sf_index'>Q.{Qindex+1}  </span>
+                                    <span className='sf_questTitle'>{question.question_title}</span>
                                 </div>
 
                                 {
                                     question.question_type === 'SA' ?
-                                        (<div className='saDiv'>
-                                            <input id={`saInput-${question.id}`} type='text'
+                                        (<div className='sf_saDiv'>
+                                            <input className='sf-saInput-class' id={`sf-saInput-${question.id}`} type='text' required
                                                     value={responseValue[question.id] || ''}
                                                     onChange={(event)=>setResponseValue({...responseValue, [question.id]:event.target.value})}/>
                                         </div>)
                                     :
-                                        (<div className='mcqDiv'>{
+                                        (<div className='sf_mcqDiv'>{
                                             question.options.map(option => (
-                                                <span key={option.id} className='mcqSpan'>
-                                                    <input id={`mcqInput-${option.id}`}  type='radio'
+                                                <span key={option.id} className='sf_mcqSpan'>
+                                                    <input id={`sf-mcqInput-${option.id}`}  type='radio' required
                                                             checked = {responseValue[question.id] === option.option_name}
                                                             onChange={() => handleRadioChange(question.id, option.option_name)}/>
-                                                    <label id={`mcqLabel-${option.id}`}>{option.option_name} </label>
+                                                    <label id={`sf-mcqLabel-${option.id}`}>{option.option_name} </label>
                                                 </span>
                                             ))
                                         }</div>)
@@ -101,9 +101,9 @@ const SurveyForm = () => {
 
                     </div>
                 </div>
-                <div className='addForm_saveCancelbuttonsDiv'>
-                        <button type='submit' id='addForm_savebtn' onClick={handleSubmit}>Save</button>
-                        <button type='button' id='addform_cancelbtn' onClick={()=>navigate('/survey/userForms')}>Cancel</button>
+                <div className='sf_addForm_saveCancelbuttonsDiv'>
+                        <button type='submit' id='sf_addForm_savebtn' onClick={handleSubmit}>Save</button>
+                        <button type='button' id='sf_addform_cancelbtn' onClick={()=>navigate('/survey/userForms')}>Cancel</button>
                     </div>
 
             </div>

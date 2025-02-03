@@ -47,12 +47,12 @@ function AddForm() {
 
                         <div className='addForm_titleDiv'>
                             <label id='title_label'>Title</label>
-                            <input id='title_input' type = 'text' value = {title} required
+                            <input className='addForm-input' id='title_input' type = 'text' value = {title} required
                                     onChange={(event)=>setTitle(event.target.value)}/>
                         </div>
                         <div className='addForm_pointsDiv'>
                             <label id='points_label'>Points</label>
-                            <input id='points_input' type = 'number' value = {reward_points} required
+                            <input className='addForm-input' id='points_input' type = 'number' value = {reward_points} required
                                     onChange={(event)=>setReward_Points(event.target.value)}/>
                         </div>
 
@@ -60,7 +60,8 @@ function AddForm() {
 
                     <div className='addForm_descriptionDiv'>
                         <label id='descr_label'>Description</label>
-                        <textarea id='descr_input' type = 'text' value = {description} required
+                        <textarea className='addForm-textarea' id='descr_input' type = 'text'
+                                    value = {description} required
                                     onChange={(event)=>setDescription(event.target.value)} />
                     </div>
 

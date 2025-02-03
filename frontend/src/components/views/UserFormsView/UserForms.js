@@ -96,7 +96,7 @@ const UserForms = () => {
             {allSurvey.results ? allSurvey.results.map(surv => ( surv.status &&
             <div key={surv.id} className='survey-card'> {/*dynamically populated*/}
                 <div id='points-div-id'><label id='points-id'>
-                    <img src={PointsImg} alt='points-image'/><br/>
+                    <img id='points-img-id' src={PointsImg} alt='points-image'/><br/>
                     {surv.reward_points} Pt.</label></div>
                 <label id='title-id'>{surv.title}</label> <br/>
                 <div id='descr-div-id'><label id='descr-id'>{surv.description}</label></div>

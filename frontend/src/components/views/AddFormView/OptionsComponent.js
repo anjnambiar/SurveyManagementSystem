@@ -46,7 +46,7 @@ const OptionsComponent = ({id, setQuestDivs, questDivs}) => {
         { optionInputs.map((optionInput) =>
         ( <div key={optionInput.id} className='optionsComponent'>
 
-            <input className='optionsComponent_input' placeholder={`Option ${optionInput.id}`}
+            <input className='optionsComponent_input addForm-input' placeholder={`Option ${optionInput.id}`}
                   type='text' value={optionInput.value} name={`Option ${optionInput.id}`} required
                   onChange={(event)=>handleInputChange(optionInput.id, event.target.value)}/>
             <button type='button' className='optionsRemoveComponent_button' id='removeBtn'

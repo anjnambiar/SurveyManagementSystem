@@ -14,8 +14,6 @@
     font-size: 18px;
     font-weight: 400;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     grid-column: 1 / span 1;
     display: grid;
     grid-template-columns: 1fr;
@@ -115,13 +113,13 @@
     width: 95%;
 }
 
-.custom-select-div {
+.addForm-custom-select-div {
     grid-column: 3 / span 4;
     width : 90%;
     height: 30px;
     padding-top: 20px;
 }
-.custom-select {
+.addForm-custom-select {
     width: 95%;
     height: 30px;
     border: 1px solid #BFBFBF;
@@ -225,13 +223,13 @@
     margin-left: 20px;
 }
 
-input {
+.addForm-input {
     border: 1px solid #BFBFBF;
     border-radius: 3px;
     height: 25px;
 }
 
-textarea {
+.addForm-textarea {
     border: 1px solid #BFBFBF;
     border-radius: 3px;
     height: 80px;

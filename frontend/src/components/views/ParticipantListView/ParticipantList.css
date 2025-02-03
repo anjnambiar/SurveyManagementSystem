@@ -71,6 +71,8 @@
     grid-column: 1 / span 1;
     grid-row: 5/ span 10;
     width: 97%;
+    overflow-y: scroll;
+    margin-bottom: 10px;
 }
 
 .pl_participantsTable {
@@ -158,6 +160,8 @@ td {
 
 .pl_showingLabel{
     float: left;
+    color : #2C2C2C;
+    font-size: 16px ;
 }
 
 .pl_paginationLabel {

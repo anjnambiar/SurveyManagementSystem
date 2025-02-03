@@ -126,7 +126,7 @@ function User() {
             <div className='pl_participantTableEntryCountDiv'>
             {   userList.length !== 0 ?
                 <> <label className='pl_showingLabel'>
-                    Showing {startIndex} to {endIndex} of {userList.length} entries
+                    Showing {startIndex} to {endIndex} of {userList.count} entries
                 </label>
                 <div className='pl_paginationLabel'>
                     <ReactPaginate
