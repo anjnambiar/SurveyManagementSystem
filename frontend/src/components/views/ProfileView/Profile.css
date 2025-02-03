@@ -1,1 +1,121 @@
+.profile {
+    font-family: Inter;
+}
 
+.profile-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 150px;
+}
+
+.profile-div {
+    margin: 0px 50px ;
+    grid-column: 1 / span 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left-profile-div {
+    grid-column: 1 / span 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.right-profile-div {
+    grid-column: 2 / span 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(12, 1fr);
+    width: 90%;
+}
+
+.profile-img-div {
+    margin : 5px;
+}
+
+.profile-pwd-btn-div {
+    margin: 5px;
+}
+
+#change-pwd-btn {
+    width: 250px;
+    height: 44px;
+    border-radius: 10px ;
+    background: #4DA1A9;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24.2px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.name-div {
+    grid-row: 1 / span 1;
+    grid-column: 1/ span 1;
+    margin-bottom: 15px;
+}
+
+.email-div {
+    grid-row: 2 / span 2;
+    grid-column: 1/ span 1;
+    margin-bottom: 15px;
+}
+
+.contactNum-div {
+    grid-row: 3 / span 3;
+    grid-column: 1/ span 1;
+    margin-bottom: 15px;
+}
+
+.btn-div {
+    grid-row: 4 / span 4;
+    grid-column: 1/ span 1;
+}
+
+#update-prof-btn {
+    width: 200px;
+    height: 44px;
+    border-radius: 10px ;
+    background: #4DA1A9;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 10px;
+}
+
+#cancel-btn {
+    width: Hug (99px)px;
+    height: Hug (44px)px;
+    padding: 10px 16px 10px 16px;
+    border-radius: 10px;
+    border: 1px;
+    border: 1px solid #4DA1A9;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24.2px;
+    text-align: center;
+    color: #423A8E;
+    margin: 10px;
+}
+
+.profile-label {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: left;
+    color: #423A8E;
+    text-align: left;
+    margin-top: 10px;
+    display: block;
+}
+
+.profile-input {
+    background: #FFFFFF;
+    border: 1px solid #ABABAB;
+    width: 100%;
+    height: 45px;
+    border-radius: 12px;
+    padding-left: 10px;
+    color: #676464;
+}

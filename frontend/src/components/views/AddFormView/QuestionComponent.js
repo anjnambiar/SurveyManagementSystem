@@ -52,13 +52,14 @@ const QuestionComponent = ({questions, setQuestion}) => {
 
                         <div className='question-div'>
                             <label id='question_label'>Question</label>
-                            <input id='question_input' type = 'text' placeholder = {`Question ${questDiv.id}`}
+                            <input  className='addForm-input' id='question_input' type = 'text'
+                                    placeholder = {`Question ${questDiv.id}`}
                                     value={questDiv.inputValue} name={`Question ${questDiv.id}`} required
                                     onChange={(event)=>{handleInputChange(questDiv.id, event.target.value)}}/>
                         </div>
 
-                        <div className="custom-select-div">
-                            <select id='ans-dropdownId' className="custom-select" value={questDiv.dropdwnValue}
+                        <div className="addForm-custom-select-div">
+                            <select id='ans-dropdownId' className="addForm-custom-select" value={questDiv.dropdwnValue}
                             onChange={(event)=>handleDropdownClick(questDiv.id, event.target.value)}>
                                     <option value="SA">Short Answer</option>
                                     <option value="MCQ">Radio button</option>
@@ -66,7 +67,7 @@ const QuestionComponent = ({questions, setQuestion}) => {
                         </div>
 
                     </div>
-
+                    <br/>
                     <div className='optionsComponentDiv'>
                         { questDiv.dropdwnValue === "MCQ" ?
                             <OptionsComponent

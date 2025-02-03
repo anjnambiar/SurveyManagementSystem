@@ -66,18 +66,18 @@ const ViewForm = () => {
 
                                 {
                                     question.question_type === 'SA' ?
-                                        (<div className='saDiv'>
-                                            <input id={`saInput-${question.id}`}
+                                        (<div className='vf_saDiv'>
+                                            <input className='vf-saInput-class' id={`vf_saInput-${question.id}`}
                                                 type='text' disabled
                                                 value={responseValue[question.id] || ''} />
                                         </div>)
                                     :
-                                        (<div className='mcqDiv'>{
+                                        (<div className='vf_mcqDiv'>{
                                             question.options.map(option => (
-                                            <span key={option.id} className='mcqSpan'>
-                                                <input id={`mcqInput-${option.id}`} type='radio' disabled
+                                            <span key={option.id} className='vf_mcqSpan'>
+                                                <input id={`vf_mcqInput-${option.id}`} type='radio' disabled
                                                     checked={responseValue[question.id] === option.option_name}/>  {/*Check if this option was selected based on the response*/}
-                                                <label id={`mcqLabel-${option.id}`}>{option.option_name}</label>
+                                                <label id={`vf_mcqLabel-${option.id}`}>{option.option_name}</label>
                                             </span>
                                             ))
                                         }</div>)

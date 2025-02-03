@@ -89,11 +89,6 @@ const UserParticipatedForms = () => {
         </div>
 
     </div>
-        // <div className='userParticipatedForms'>
-        //     {/* {participatedFormList.map((participatedForm) => (
-        //         <div>{participatedForm.title}</div>
-        //     ))} */}
-        // </div>
     )
 }
 

@@ -104,7 +104,7 @@ const ParticipantList = () => {
                     <div className='pl_participantTableEntryCountDiv'>
                     {   participantList.length !== 0 ?
                         <> <label className='pl_showingLabel'>
-                            Showing {startIndex} to {endIndex} of {participantList.length} entries
+                            Showing {startIndex} to {endIndex} of {participantList.count} entries
                         </label>
                         <div className='pl_paginationLabel'>
                             <ReactPaginate

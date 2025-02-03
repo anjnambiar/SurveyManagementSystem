@@ -37,6 +37,7 @@ function AdminForms () {
     // Handle dropdown click on each form row
     const handleFormActionDropdownClick = (event,tableEntry) => {
         if(event.target.value === 'delete') { //delete the survey - set status to false
+            alert(`Do you want to delete ${tableEntry.title} survey ?`)
             axios.delete(`http://127.0.0.1:8000/survey/surveyDetail/${tableEntry.id}/`)
             .then(response => {
                 if(response.status === 200) {
@@ -147,7 +148,7 @@ function AdminForms () {
                 <div className='formTableEntryCountDiv'>
                 {   tableData.length !== 0 ?
                     <><label className='showingLabel'>
-                        Showing {startIndex} to {endIndex} of {tableData.length} entries
+                        Showing {startIndex} to {endIndex} of {tableData.count} entries
                     </label>
                     <div className='paginationLabel'>
                         <ReactPaginate

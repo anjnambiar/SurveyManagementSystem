@@ -108,7 +108,7 @@ const UserSurvey = () => {
         <div className='formTableEntryCountDiv'>
         {   tableData.length !== 0 ?
             <><label className='showingLabel'>
-                Showing {startIndex} to {endIndex} of {tableData.length} entries
+                Showing {startIndex} to {endIndex} of {tableData.count} entries
             </label>
             <div className='paginationLabel'>
                 <ReactPaginate

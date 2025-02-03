@@ -8,8 +8,6 @@
     font-size: 18px;
     font-weight: 400;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     grid-column: 1 / span 1;
     display: grid;
     grid-template-columns: 1fr;
@@ -30,42 +28,29 @@
 .vf_surveyDiv {
     grid-column: 1 / span 1;
     grid-row: 2 / span 11;
-    margin: auto;
-    margin-top: 0;
+    margin: 10px;
 }
 
 #vf_title {
     color: #423A8E;
-    font-family: Inter;
     font-size: 36px;
     font-weight: 600;
-    line-height: 43.57px;
     text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
 .vf_descriptionDiv {
     color : #000000;
-    font-family: Inter;
     font-size: 18px;
     font-weight: 400;
-    line-height: 21.78px;
     text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     margin-bottom: 20px;
 }
 
 .vf_index {
     color : #423A8E;
-    font-family: Inter;
     font-size: 24px;
     font-weight: 700;
-    line-height: 29.05px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
 .vf_questDiv {
@@ -75,53 +60,36 @@
 
 .vf_questTitle {
     color : #423A8E;
-    font-family: Inter;
     font-size: 20px;
     font-weight: 400;
-    line-height: 24.2px;
     text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
-.saDiv {
+.vf_saDiv {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.mcqDiv {
+.vf_mcqDiv {
     color :#423A8E;
     font-family: Roboto;
     font-size: 16px;
     font-weight: 400;
-    line-height: 18.75px;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     margin-bottom: 20px;
     text-align: center;
     padding-right: 20px;
 }
 
-#saInput {
+.vf-saInput-class {
     background-color : #F0EEEE;
     color : #423A8E;
     border: 1px solid #ABABAB;
-    width: 400px;
     height: 40px;
-    top: 154px;
-    left: 69px;
-    gap: 0px;
     border-radius: 10px;
-    border: 1px 0px 0px 0px;
-    opacity: 0px;
-    font-family: Inter;
     font-size: 20px;
     font-weight: 400;
-    line-height: 24.2px;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
-#mcqLabel {
+#vf_mcqLabel {
     text-align: center;
 }

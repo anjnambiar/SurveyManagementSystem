@@ -1,4 +1,5 @@
-.viewFormDiv {
+.surveyFormDiv {
+    overflow-y: scroll;
     margin : 30px;
     padding: 10px;
     border-radius: 10px;
@@ -8,8 +9,6 @@
     font-size: 18px;
     font-weight: 400;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     grid-column: 1 / span 1;
     display: grid;
     grid-template-columns: 1fr;
@@ -17,111 +16,112 @@
     min-height: 600px;
 }
 
-.vf_backLinkDiv {
+.sf_backLinkDiv {
     float: left;
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
+    margin: 0px 0px 0px 10px;
 }
 
-.vf_backLink {
+.sf_backLink {
     text-decoration: none;
 }
 
-.vf_surveyDiv {
+.sf_surveyDiv {
     grid-column: 1 / span 1;
     grid-row: 2 / span 11;
     margin: auto;
-    margin-top: 0;
+    margin-top: 10px;
 }
 
-#vf_title {
+#sf_title {
     color: #423A8E;
-    font-family: Inter;
     font-size: 36px;
     font-weight: 600;
-    line-height: 43.57px;
     text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
-.vf_descriptionDiv {
+.sf_descriptionDiv {
     color : #000000;
-    font-family: Inter;
     font-size: 18px;
     font-weight: 400;
-    line-height: 21.78px;
     text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     margin-bottom: 20px;
 }
 
-.vf_index {
+.sf_index {
     color : #423A8E;
-    font-family: Inter;
     font-size: 24px;
     font-weight: 700;
-    line-height: 29.05px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
-.vf_questDiv {
+.sf_questDiv {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.vf_questTitle {
+.sf_questTitle {
     color : #423A8E;
-    font-family: Inter;
     font-size: 20px;
     font-weight: 400;
-    line-height: 24.2px;
     text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
-.saDiv {
+.sf_addForm_saveCancelbuttonsDiv {
+    grid-column: 1 / span 1;
+    margin: auto;
+}
+
+.sf_saDiv {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.mcqDiv {
+.sf_mcqDiv {
     color :#423A8E;
     font-family: Roboto;
     font-size: 16px;
     font-weight: 400;
     line-height: 18.75px;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     margin-bottom: 20px;
     text-align: center;
     padding-right: 20px;
 }
 
-#saInput {
+.sf-saInput-class {
     background-color : #F0EEEE;
     color : #423A8E;
     border: 1px solid #ABABAB;
     width: 400px;
     height: 40px;
-    top: 154px;
-    left: 69px;
-    gap: 0px;
     border-radius: 10px;
-    border: 1px 0px 0px 0px;
-    opacity: 0px;
-    font-family: Inter;
     font-size: 20px;
     font-weight: 400;
-    line-height: 24.2px;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
-#mcqLabel {
+#sf-mcqLabel {
     text-align: center;
+}
+
+#sf_addForm_savebtn {
+    color: #FFFFFF;
+    background-color: #4DA1A9;
+    font-weight: 600;
+    height: 40px;
+    width: 90px;
+    padding: 10px 20px 10px 20px;
+    margin-right: 10px;
+}
+
+#sf_addform_cancelbtn {
+    border: 1px solid #4DA1A9;
+    color: #4DA1A9;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    height: 40px;
+    width: 90px;
+    padding: 10px 20px 10px 20px;
+    justify-content: space-between;
+    margin-left: 20px;
 }
