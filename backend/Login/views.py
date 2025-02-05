@@ -155,10 +155,32 @@ class UserAddReward(APIView) :
         return Response(status=status.HTTP_200_OK)
 
 
-# delete a user - set is_active to false
-class UserDeleteView(APIView) :
-    def post(self, request, pk) :
-        user = CustomUser.objects.get(pk = pk)
+
+# get, delete , update details of a particular user
+class UserDetails(APIView) :
+    def getUser(self, pk) :
+        try :
+            user = CustomUser.objects.get(pk = pk)
+        except CustomUser.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        return user
+
+    def get(self, request, pk) :
+        user = self.getUser(pk)
+        serializer = CustomUserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk) :
+        user = self.getUser(pk)
         user.is_active = False
+        user.save()
+        return Response(status=status.HTTP_200_OK)
+
+    def patch(self, request, pk) :
+        user = self.getUser(pk)
+        updatedUserData = request.data['updatedUserData']
+        user.name = updatedUserData['name']
+        user.email = updatedUserData['email']
+        user.contactNum = updatedUserData['contactNum']
         user.save()
         return Response(status=status.HTTP_200_OK)

@@ -1,17 +1,20 @@
 import './Login.css';
+import React from 'react';
 import { useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchUserData } from '../../../redux/userSlice.js';
 
 // Login > Admin or User
 function Login(props) {
 
+   const dispatch = useDispatch();
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
    const [authErrorMessage, setAuthErrorMessage] = useState('');
    const navigate = useNavigate();
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,6 +24,7 @@ function Login(props) {
             .then(response => {
                 localStorage.setItem("username", response.data.name);
                 localStorage.setItem("user_id", response.data.id);
+                dispatch(fetchUserData(response.data.id));
                 if (response.data.is_staff) {
                     localStorage.setItem("is_staff", "admin");
                     return navigate('/survey/adminForms', {replace:true});

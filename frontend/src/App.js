@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import axios from 'axios';
 import { Route, Routes } from "react-router-dom";
 import Main from './components/views/MainView/Main.js'
@@ -38,7 +39,7 @@ function App() {
 
         <Route element={ <SurveyMain/> }>
             <Route path="survey/adminForms" element={<AdminForms/>}></Route>
-            <Route path="survey/profile" element={<Profile/>}></Route>
+            <Route path="survey/profile/:userId" element={<Profile/>}></Route>
             <Route path="survey/user" element={<User/>}></Route>
             <Route path="survey/addForms" element={<AddForm/>}></Route>
             <Route path="survey/participantList/:surveyId" element={<ParticipantList/>}></Route>

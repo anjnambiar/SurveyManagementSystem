@@ -1,4 +1,5 @@
 import './AdminForms.css';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { useState, useEffect } from 'react';
