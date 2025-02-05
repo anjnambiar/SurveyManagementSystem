@@ -39,8 +39,6 @@
 .uForm-searchInput {
     width: 70%;
     height: 40px;
-    gap: 0px;
-    opacity: 0px;
     border: 1px solid #BFBFBF;
     border-radius: 10px ;
     color : #FFFFFF;
@@ -54,32 +52,22 @@
     background-color: #4DA1A9;
     color: #F6F4F0;
     padding: 10px 24px 10px 24px;
-    gap: 10px;
     border-radius: 10px ;
-    opacity: 0px;
     font-family: Inter;
     font-size: 20px;
     font-weight: 600;
-    line-height: 24.2px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
 .uForm-view-parti-btn-disabled {
     background-color: #A5A5A5;
     color: #F6F4F0;
     padding: 10px 24px 10px 24px;
-    gap: 10px;
     border-radius: 10px ;
-    opacity: 0px;
     font-family: Inter;
     font-size: 20px;
     font-weight: 600;
-    line-height: 24.2px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
 .survey-card-div {
@@ -136,10 +124,7 @@
     color : #2C2C2C;
     font-size: 16px;
     font-weight: 400;
-    line-height: 19.36px;
     text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     padding: 0px 25px 0px 20px;
 }
 

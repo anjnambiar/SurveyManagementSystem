@@ -1,4 +1,5 @@
 import './Main.css';
+import React from 'react';
 import InitialImage from '../../../images/InitialImage.jpg';
 import {Outlet} from 'react-router-dom';
 

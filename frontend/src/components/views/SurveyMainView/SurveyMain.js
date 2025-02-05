@@ -1,4 +1,5 @@
 import './SurveyMain.css';
+import React from 'react';
 import {Link, Outlet, useNavigate} from 'react-router-dom';
 import FormIcon from '../../../images/FormIcon.png';
 import ProfileIcon from '../../../images/ProfileIcon.png';
@@ -11,6 +12,7 @@ function SurveyMain() {
 
     const userName = localStorage.getItem('username') ;
     const is_staff = localStorage.getItem("is_staff") ;
+    const userId = localStorage.getItem('user_id');
 
     const [headerName, setHeaderName] = useState('Forms');
 
@@ -51,7 +53,7 @@ function SurveyMain() {
 
                     <div className='profileLinkDiv leftLinkDiv'>
                         <img className='survey_icons' src={ProfileIcon} alt='profileIcon'/>
-                        <Link to='survey/profile' className='surveyMainLink'
+                        <Link to={`survey/profile/${userId}`} className='surveyMainLink'
                             onClick={()=>{setHeaderName('Profile')}}>Profile</Link>
                     </div>
                     {is_staff ? (

@@ -1,4 +1,5 @@
 import ReactPaginate from "react-paginate";
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -19,9 +20,9 @@ function User() {
     // fetch all users
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/login/userFetch/?page=${currentPage}&page_size=${pageSize}`)
-        .then(resposne => {
-            setUserList(resposne.data);
-            setTotalPages(resposne.data.total_pages);
+        .then(response => {
+            setUserList(response.data);
+            setTotalPages(response.data.total_pages);
         })
         .catch(error => console.log(error))
     }, [currentPage, pageSize])
@@ -45,9 +46,10 @@ function User() {
       // Handle dropdown click on each form row
       const handleFormActionDropdownClick = (event, user) => {
         if(event.target.value === 'delete') { //delete the survey - set status to false
-            axios.delete(`http://127.0.0.1:8000/login/userDelete/${user.id}/`)
+            axios.delete(`http://127.0.0.1:8000/login/userDetails/${user.id}/`)
             .then(response => {
                 if(response.status === 200) {
+                    user.is_active = false;
                     navigate('/survey/user');
                 }
             })
@@ -96,6 +98,7 @@ function User() {
                         <th id='pl_participantContact'>Contact Number &#8645;</th>
                         <th id='pl_participantEmail'>Email  &#8645;</th>
                         <th id='pl_reward_points'>Total Points  &#8645;</th>
+                        <th id='pl_status'>Status  &#8645;</th>
                         <th id='pl_viewFormBtnId'></th>
                         <th id='formActionId'></th>
                     </tr>
@@ -107,13 +110,17 @@ function User() {
                                 <td>{user.contactNum}</td>
                                 <td>{user.email}</td>
                                 <td>{user.reward_points} pt</td>
+                                <td>{user.is_active === true ?
+                                            (<><span className="active-form">●</span><span>Active</span></>) :
+                                            (<><span className="deleted-form">●</span><span>Deleted</span></>)
+                                        }</td>
                                 { !user.is_staff && (
                                     <td>
                                     <select id='formAction_select' className="formAction-dropdown"
                                             onChange={(event)=>handleFormActionDropdownClick(event,user)}>
                                             <option></option>
-                                            <option value='delete'>Delete</option>
-                                            <option value='view_forms'>View Participanted Forms</option>
+                                            {user.is_active === true && <option value='delete'>Delete</option> }
+                                            <option value='view_forms'>View Participated Forms</option>
                                     </select>
                                     </td>
                                 )}

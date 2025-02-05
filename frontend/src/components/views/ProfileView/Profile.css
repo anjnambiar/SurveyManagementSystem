@@ -1,5 +1,6 @@
 .profile {
     font-family: Inter;
+    max-height : 100vh;
 }
 
 .profile-form {
@@ -30,12 +31,28 @@
     width: 90%;
 }
 
+#profile-camera-btn {
+    background-image: url("../../../images/CameraImage.png");
+    width: 32px;
+    height: 28.8px;
+    position: absolute;
+    top: 300px;
+    left: 420px;
+}
+
 .profile-img-div {
     margin : 5px;
 }
 
 .profile-pwd-btn-div {
     margin: 5px;
+}
+
+#pwd-key-img {
+    width: 21.4px;
+    height: 20.04px;
+    border: 2px;
+    margin: 0px 6px auto auto;
 }
 
 #change-pwd-btn {
@@ -45,7 +62,6 @@
     background: #4DA1A9;
     font-size: 20px;
     font-weight: 500;
-    line-height: 24.2px;
     text-align: center;
     color: #FFFFFF;
 }
@@ -118,4 +134,41 @@
     border-radius: 12px;
     padding-left: 10px;
     color: #676464;
+}
+
+.banner-div {
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: linear-gradient(90deg, rgba(2, 170, 176, 0.3) 0%, rgba(0, 205, 172, 0.3) 100%);
+    background-image: url("../../../images/BannerBackground.png");
+    width: 100%;
+    height: 100px;
+    margin : -60px auto 20px -30px;
+    border-radius: 20px ;
+}
+
+#profile-banner-badge {
+    grid-column: 1 / span 2;
+    margin: 20px 50px auto auto  ;
+}
+
+#profile-banner-label {
+    grid-column: 3 / span 3;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: left;
+    width: 268px;
+    color: #423A8E;
+    margin: 10px auto auto 20px;
+}
+
+#profile-banner-points {
+    grid-column: 3 / span 3;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: #423A8E;
+    width: 268px;
+    margin: -30px auto auto 20px;
 }
