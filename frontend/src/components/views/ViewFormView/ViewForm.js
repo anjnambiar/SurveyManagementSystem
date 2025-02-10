@@ -31,7 +31,7 @@ const ViewForm = () => {
     },[surveyId, participantId]);
 
     let link ;
-    if(localStorage.getItem("is_staff")) {
+    if(localStorage.getItem("is_staff") === 'admin') {
         link = <Link className='vf_backLink' to={`/survey/participantList/${surveyId}`} >
                 &lt; Back </Link>
     } else {

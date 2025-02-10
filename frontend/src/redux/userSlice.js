@@ -29,6 +29,10 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.data = action.payload;
                 state.error = null;
+                localStorage.setItem('username' , state.data.name);
+                localStorage.setItem('user_id' , state.data.id);
+                (state.data.is_staff) ? localStorage.setItem("is_staff", "admin") 
+                                      : localStorage.setItem("is_staff", null) ;
             })
             .addCase(fetchUserData.rejected, (state, action) => {
                 state.loading = false;

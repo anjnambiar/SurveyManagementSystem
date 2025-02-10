@@ -24,7 +24,7 @@ function App() {
   axios.defaults.xsrfCookieName = 'csrftoken';
   axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-  //const isLogged = localStorage.getItem('username') == null ? false : true;
+  //const isLogged = localStorage.getItem('username') ;
 
   return (
     <div className="App">
@@ -37,7 +37,7 @@ function App() {
           <Route path="/password-reset/:token" element={<PasswordReset/>}></Route>
         </Route>
 
-        <Route element={ <SurveyMain/> }>
+         <Route element={ <SurveyMain/> }>
             <Route path="survey/adminForms" element={<AdminForms/>}></Route>
             <Route path="survey/profile/:userId" element={<Profile/>}></Route>
             <Route path="survey/user" element={<User/>}></Route>

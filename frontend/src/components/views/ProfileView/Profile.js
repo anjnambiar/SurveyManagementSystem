@@ -42,7 +42,7 @@ function Profile() {
     }
 
     const handleCancelClick = () => {
-        if(localStorage.getItem("is_staff")) 
+        if(localStorage.getItem("is_staff") === "admin") 
             navigate('/survey/adminForms');
         else
             navigate('/survey/userForms');
@@ -56,7 +56,7 @@ function Profile() {
             <form className='profile-form' onSubmit={handleUpdateProfile}>
                 <div className='profile-div'>
 
-                {! localStorage.getItem('is_staff') &&
+                { localStorage.getItem('is_staff') !== 'admin' &&
                 <div className='banner-div'>
                     <img id='profile-banner-badge' src={BannerBadge} alt='banner-badge'/>
                     <label id='profile-banner-label'>You have earned a total</label> <br/>
