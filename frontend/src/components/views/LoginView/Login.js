@@ -22,11 +22,8 @@ function Login(props) {
             axios.post('http://127.0.0.1:8000/login/authenticate/' , //api call for user authentication
             {email, password})
             .then(response => {
-                localStorage.setItem("username", response.data.name);
-                localStorage.setItem("user_id", response.data.id);
                 dispatch(fetchUserData(response.data.id));
                 if (response.data.is_staff) {
-                    localStorage.setItem("is_staff", "admin");
                     return navigate('/survey/adminForms', {replace:true});
                 }
                 else

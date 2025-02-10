@@ -17,7 +17,7 @@ function SurveyMain() {
     const [headerName, setHeaderName] = useState('Forms');
 
     let link ;
-    if(is_staff) {
+    if(is_staff === 'admin') {
         link = <Link to='survey/adminForms' className='surveyMainLink'
                     onClick={()=>{setHeaderName('Forms')}}>Forms</Link>
     } else {
@@ -56,12 +56,12 @@ function SurveyMain() {
                         <Link to={`survey/profile/${userId}`} className='surveyMainLink'
                             onClick={()=>{setHeaderName('Profile')}}>Profile</Link>
                     </div>
-                    {is_staff ? (
+                    {is_staff === 'admin' && (
                     <div className='userLinkDiv leftLinkDiv'>
                         <img className='survey_icons' src={UserIcon} alt='userIcon' />
                         <Link to='survey/user' className='surveyMainLink'
                             onClick={()=>{setHeaderName('User')}}>User</Link>
-                    </div> ): null }
+                    </div> ) }
 
                     <div className='logoutDiv leftLinkDiv'>
                         <img className='survey_icons' src={LogoutIcon} alt='logoutIcon' />
