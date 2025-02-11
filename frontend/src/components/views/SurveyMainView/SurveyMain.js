@@ -13,8 +13,8 @@ function SurveyMain() {
     const userName = localStorage.getItem('username') ;
     const is_staff = localStorage.getItem("is_staff") ;
     const userId = localStorage.getItem('user_id');
-
     const [headerName, setHeaderName] = useState('Forms');
+    const navigate = useNavigate();
 
     let link ;
     if(is_staff === 'admin') {
@@ -25,7 +25,6 @@ function SurveyMain() {
                     onClick={()=>{setHeaderName('Forms')}}>Forms</Link>
     }
 
-    const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.clear();
         return navigate('/');
@@ -33,13 +32,14 @@ function SurveyMain() {
 
     useEffect(() => {
         if (!userName) {
+            localStorage.clear();
             navigate('/');
         }
-    },[]);
+      }, [userName, navigate]);
 
     return (
         <div className = "surveyParentForm">
-            { userName ? (
+            { userName && (
             <><div className="leftPanel">
 
                     <div className='logoDiv'>
@@ -78,7 +78,7 @@ function SurveyMain() {
                         <Outlet />
 
                     </div></>
-            ): navigate('/') }
+            )}
         </div>
 
        

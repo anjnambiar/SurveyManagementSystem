@@ -1,6 +1,6 @@
 import './Login.css';
 import React from 'react';
-import { useState} from 'react';
+import { useState ,  useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
@@ -15,6 +15,19 @@ function Login(props) {
    const [password, setPassword] = useState('');
    const [authErrorMessage, setAuthErrorMessage] = useState('');
    const navigate = useNavigate();
+   const [authState, setAuthState] = useState(null);
+
+   // Use useEffect to handle navigation after authentication state is set
+  useEffect(() => {
+    if (authState && authState.isAuthenticated) {
+        if (localStorage.getItem("is_staff") === 'admin') {
+            return navigate('/survey/adminForms', {replace:true});
+        }
+        else {
+            return navigate('/survey/userForms', {replace:true});
+        }
+    }
+  }, [authState, navigate]); // Only re-run when authState changes
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -22,12 +35,17 @@ function Login(props) {
             axios.post('http://127.0.0.1:8000/login/authenticate/' , //api call for user authentication
             {email, password})
             .then(response => {
-                dispatch(fetchUserData(response.data.id));
-                if (response.data.is_staff) {
-                    return navigate('/survey/adminForms', {replace:true});
-                }
-                else
-                    return navigate('/survey/userForms', {replace:true});
+                if (response.status === 200) {
+                    dispatch(fetchUserData(response.data.id));
+                    localStorage.setItem('username' , response.data.name);
+                    localStorage.setItem('user_id' , response.data.id);
+                    (response.data.is_staff) ? localStorage.setItem("is_staff", "admin") 
+                                          : localStorage.setItem("is_staff", null) ;
+                    // After login is successful, update authentication state
+                    setAuthState({ isAuthenticated: true, token: response.data.token });
+                  } else {
+                    console.log('Login failed');
+                  }
             }).catch(error => {
                 setAuthErrorMessage('Invalid username or password');
             })
