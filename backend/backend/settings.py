@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-l4wl#i38q(a=8koj@z3k@=g!assvd!4!+7gc&ivr#282zpd*ry
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['surveymanagementsystem.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = "Login.CustomUser"
 
